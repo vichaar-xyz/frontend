@@ -85,45 +85,46 @@
         gap: 20px;
         justify-content: space-around;
       }
-
-      .feature-card {
-        flex-basis: calc(25% - 20px);
-        // background-color: green;
-        background-image: linear-gradient(
-          to top,
-          #f41e1e 0%,
-          #e0972f 10%,
-          #b3d52e 20%,
-          #35c89c 30%,
-          #4074b2 40%,
-          #0074fc 50%,
-          #6b05fa 60%,
-          #ff09d8 70%,
-          #c02fa9 80%,
-          #fe5f05 90%
-        );
-        color: #fff;
-        text-align: center;
-        padding: 45px 15px;
-        // border: 1px solid #f41e1e;
-        border-radius: 19px;
+      a {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-        z-index: 1;
-        &::after {
-          content: "";
-          width: 99%;
-          height: 99.5%;
-          background-color: #1a2730;
-          position: absolute;
-          top: 1px;
-          z-index: -1;
+        flex-basis: calc(25% - 20px);
+        .feature-card {
+          background-image: linear-gradient(
+            to top,
+            #f41e1e 0%,
+            #e0972f 10%,
+            #b3d52e 20%,
+            #35c89c 30%,
+            #4074b2 40%,
+            #0074fc 50%,
+            #6b05fa 60%,
+            #ff09d8 70%,
+            #c02fa9 80%,
+            #fe5f05 90%
+          );
+          color: #fff;
+          text-align: center;
+          padding: 45px 15px;
+          // border: 1px solid #f41e1e;
           border-radius: 19px;
-        }
-        .bottom_container_box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+          z-index: 1;
+          &::after {
+            content: "";
+            width: 99%;
+            height: 99.5%;
+            background-color: #1a2730;
+            position: absolute;
+            top: 1px;
+            z-index: -1;
+            border-radius: 19px;
+          }
+          .bottom_container_box {
+          }
         }
       }
 
