@@ -1,0 +1,72 @@
+@import "../../assets/scss/style.scss";
+
+.homepage_main_container {
+  background-image: url("../../assets/images/bg.svg");
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  .homepage_container {
+    .top_container {
+      display: flex;
+      .icon_container {
+        width: 180px;
+        height: 180px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .text_container {
+        color: #fff;
+        font-family: "Mplus 1p Bold";
+        font-size: 65px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1; /* 116.471% */
+        .gradient_text {
+          background: linear-gradient(
+            90deg,
+            #9e00ff 0.01%,
+            #fff 40.51%,
+            #fff 50.96%,
+            #fe5f05 90.9%
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-family: "Mplus 1p Bold";
+          font-size: 65px;
+          font-style: normal;
+          font-weight: 700;
+        }
+      }
+      .button_container {
+        button {
+          background-color: $primary-color;
+          outline: none;
+          border: none;
+          border-radius: 20px;
+          padding: 10px 20px;
+          color: #fff;
+          text-align: center;
+          //   font-family: "Mplus 1p Bold";
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          img {
+            height: 100%;
+            width: 50%;
+          }
+        }
+      }
+    }
+    .bottom_container {
+    }
+  }
+}

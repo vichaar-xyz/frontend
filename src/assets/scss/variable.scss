@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+$white: #fff;
+$black: #000;
+
+// Backgrounds
+$primary-bg: #f0f4ff;
+
+// Colors
+$heading-color: #333b69;
+$primary-color: #fe5f05;
+$secondary-color: #0287ea;
+$success-color: #00ce8e;
+$warning-color: #ffbb38;
+$text-color: #343c6a;
+
+// Border radius
+$base-border-radius: 10px;
+
+// Box Shadow
+$soft-shadow: 0 0px 10px
+  rgba(
+    $color: #000000,
+    $alpha: 0.2,
+  );
+
+// Font Size
+$font-size-base: 14px;
+$font-size-xlg: $font-size-base + 4px; //18px
+$font-size-lg: $font-size-base + 2px; //16px
+$font-size-sm: $font-size-base - 2px; //12px
