@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
 import routes from "./routes";
-import Dashboard from "./containers/Dsahboard";
+import HomePage from "./containers/Homepage";
 
 const Router = () => {
     return (
@@ -15,7 +15,7 @@ const Router = () => {
                         path={route.path}
                     />
                 ))}
-                <Route exact element={<Dashboard />} path="*" />
+                <Route exact element={<HomePage />} path="*" />
             </Routes>
         </div>
     );

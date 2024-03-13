@@ -2,14 +2,18 @@
 
 .homepage_main_container {
   background-image: url("../../assets/images/bg.svg");
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
   .homepage_container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
     .top_container {
       display: flex;
+      margin-top: 30px;
       .icon_container {
         width: 180px;
         height: 180px;
@@ -67,6 +71,91 @@
       }
     }
     .bottom_container {
+      margin-bottom: 20px;
+      .bg_border {
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 20px;
+        // justify-content: space-around;
+      }
+      .features-container {
+        padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+      }
+
+      .feature-card {
+        flex-basis: calc(25% - 20px);
+        // background-color: green;
+        background-image: linear-gradient(
+          to top,
+          #f41e1e 0%,
+          #e0972f 10%,
+          #b3d52e 20%,
+          #35c89c 30%,
+          #4074b2 40%,
+          #0074fc 50%,
+          #6b05fa 60%,
+          #ff09d8 70%,
+          #c02fa9 80%,
+          #fe5f05 90%
+        );
+        color: #fff;
+        text-align: center;
+        padding: 45px 15px;
+        // border: 1px solid #f41e1e;
+        border-radius: 19px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+        &::after {
+          content: "";
+          width: 99%;
+          height: 99.5%;
+          background-color: #1a2730;
+          position: absolute;
+          top: 1px;
+          z-index: -1;
+          border-radius: 19px;
+        }
+        .bottom_container_box {
+        }
+      }
+
+      .feature-image {
+        width: 65%;
+        max-width: 237px;
+        object-fit: contain;
+      }
+
+      .feature-title {
+        margin-top: 50px;
+        font-weight: 800;
+        font-size: 25px;
+      }
+
+      .feature-description {
+        margin-top: 12px;
+        font-size: 18px;
+      }
+
+      @media (max-width: 991px) {
+        .features-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .feature-card {
+          margin-top: 34px;
+          padding: 20px;
+          width: 100%;
+        }
+      }
     }
   }
 }

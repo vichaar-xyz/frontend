@@ -1,0 +1,116 @@
+@import "../../assets/scss/variable.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 11px;
+  background-color: $primary-bg;
+}
+
+@media (max-width: 991px) {
+  .header {
+    flex-wrap: wrap;
+  }
+}
+
+.search-bar {
+  display: flex;
+  gap: 19px;
+  margin-top: 11px;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.38);
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .search-bar {
+    max-width: 100%;
+    flex-wrap: wrap;
+    white-space: initial;
+  }
+}
+
+.search-icon {
+  width: 76px;
+  height: 59px;
+  border-radius: 14px;
+  background-color: rgba(217, 217, 217, 0.27);
+}
+
+.search-input {
+  flex-grow: 1;
+  width: fit-content;
+  padding: 19px 60px 19px 26px;
+  border-radius: 21px;
+  background-color: #1a2730;
+  font-family: Mplus 1p, sans-serif;
+  justify-content: center;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .search-input {
+    padding: 0 20px;
+    white-space: initial;
+  }
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: auto 0;
+  padding: 0 20px;
+}
+
+.header-icon {
+  width: 48px;
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+}
+
+.profile-link {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: auto;
+  padding-right: 20px;
+  border-radius: 21px;
+  border: 2px solid #f41e1e;
+  background-color: #1a2730;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 300;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .profile-link {
+    white-space: initial;
+  }
+}
+
+.profile-avatar {
+  width: 83px;
+  aspect-ratio: 1.04;
+  object-fit: auto;
+  object-position: center;
+  border-radius: 50%;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.profile-username {
+  flex-grow: 1;
+  flex-basis: auto;
+  align-self: stretch;
+  margin: auto 0;
+  font-family: Mplus 1p, sans-serif;
+}
