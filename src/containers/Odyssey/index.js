@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './index.scss';
 
 const Odyssey = () => {
@@ -15,6 +15,19 @@ const Odyssey = () => {
         { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/e86de4dd1fe4e260bf4c3ec31987f94ee94896eba1cd21a7c4cfa3241e764570?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Like icon" },
         { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/a91c164475799a3fad37f4675e97f13d03d70f0a4ec7c991ea26f80ed9d439f5?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Comment icon" },
         { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f7b299f12d57ef24659cff76013f7b6fee92ea4dfb453badc499db353b28874b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Share icon" },
+    ];
+
+    const tokens = [
+        { id: 1, name: "Token 1" },
+        { id: 2, name: "Token 2" },
+        { id: 3, name: "Token 3" },
+        { id: 4, name: "Token 4" },
+    ];
+
+    const users = [
+        { id: 1, avatar: "https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" },
+        { id: 2, avatar: "https://cdn.builder.io/api/v1/image/assets/TEMP/efa44d9f08a1a3cafe9913d03355c1f15b007b5d85036cca431e26445d21dd3a?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" },
+        { id: 3, avatar: "https://cdn.builder.io/api/v1/image/assets/TEMP/f2f51b3f7a242e9f1680d5c6995d842d31461d6c4c82581f42ad695a42f9c825?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" },
     ];
 
     const profiles = [
@@ -46,12 +59,20 @@ const Odyssey = () => {
         <div className={`menu-item ${active ? "active" : ""}`} onClick={() => navigate(route)}>{label}</div>
     );
 
+    const postData = {
+        authorImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/732f6482c3017e3e025ae9caca33735232b4ab90848bdbec8d9a01bfbf280301?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+        authorUsername: "@anddtrtess",
+        postImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/832dfaaa4d5611ea46a61ab310465bf39eecb6d11cf86f93e6ac02d44becf8f4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+        postDescription: "It serves as a central hub where users can discover, share, and discuss the latest insights",
+    };
+
+
 
     return (
         <div>
 
             <div className="odyssey_main_container">
-                <div className="odyssey_container">
+                <div className="odyssey_container max_width_container">
                     <div className="odyssey_left">
                         {/* Left  */}
                         <div className="left_main_card_container">
@@ -151,107 +172,204 @@ const Odyssey = () => {
                         {/* Content  */}
                         <div className="content_card_main_container">
                             <div className="content_card">
+
+                                <Link to='/odyssey/1'>
+                                    <article className="post-card">
+                                        <header className="post-header">
+                                            <div className="user-info">
+                                                <img
+                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ea4026047dd4f10f99f7b3f7406ff02eb43622364882c53424cf223841370cd4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                    alt="User avatar"
+                                                    className="user-avatar"
+                                                />
+                                                <div className="username">@maheshwari_009</div>
+                                            </div>
+                                            <div className="follow-button" >Follow</div>
+                                        </header>
+                                        <div className="post-content">
+                                            <div className="post-image-container">
+                                                <img
+                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/fbd2fb878ea7aaf52d3d8047fc13d942e60c018aab9a38d5868f171782fb5c23?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                    alt="Post image"
+                                                    className="post-image"
+                                                />
+                                            </div>
+                                            <div className="post-text-container">
+                                                <p className="post-text">
+                                                    It serves as a central hub where users can discover, share, and
+                                                    discuss the latest insights
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <footer className="post-footer">
+                                            <div className="token-list">
+                                                <div className="token-label">Tokens</div>
+                                                <div className="token-count">+ {tokens.length} more</div>
+                                            </div>
+                                            <div className="like-count">
+                                                <img
+                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                    alt="Like icon"
+                                                    className="like-icon"
+                                                />
+                                                <div className="like-number">1.2k</div>
+                                                <img
+                                                    key={users[1].id}
+                                                    src={users[1].avatar}
+                                                    alt="User avatar"
+                                                    className="user-avatar-small"
+                                                />
+                                                <img
+                                                    key={users[2].id}
+                                                    src={users[2].avatar}
+                                                    alt="User avatar"
+                                                    className="user-avatar-small"
+                                                />
+                                            </div>
+                                            {/* <div className="user-list">
+                                            {users.map((user) => (
+                                                <img
+                                                    key={user.id}
+                                                    src={user.avatar}
+                                                    alt="User avatar"
+                                                    className="user-avatar-small"
+                                                />
+                                            ))}
+                                        </div> */}
+                                        </footer>
+                                    </article>
+                                </Link>
+
                                 <article className="post-card">
                                     <header className="post-header">
-                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
-                                        <h2 className="username">@maheshwari_009</h2>
-                                    </header>
-                                    <p className="post-content">
-                                        It serves as a central hub where users can discover, share, and
-                                        discuss the latest insights, trends, and developments within the Web3
-                                        ecosystem.
-                                        <br />
-                                        Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
-                                        delivers a personalized feed of articles, news, and updates relevant
-                                        to the topics you care about most in the Web3 industry.Community
-                                        Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
-                                        ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
-                                        <span className="see-more">see more </span>
-                                    </p>
-                                    <footer className="post-actions">
-                                        <div className="likes-container">
-                                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/078ebc073013649ae54cb9f6a8cbc9a3f4a3e76be767e180e992df45dd2a075b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Heart icon" className="heart-icon" />
-                                            <span className="likes-count">1.2k</span>
-                                        </div>
-                                        {images.map((image, index) => (
+                                        <div className="user-info">
                                             <img
-                                                key={index}
-                                                src={image.src}
-                                                alt={image.alt}
-                                                className="action-icon"
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ea4026047dd4f10f99f7b3f7406ff02eb43622364882c53424cf223841370cd4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="User avatar"
+                                                className="user-avatar"
                                             />
-                                        ))}
+                                            <div className="username">@maheshwari_009</div>
+                                        </div>
+                                        <div className="follow-button" >Follow</div>
+                                    </header>
+                                    <div className="post-content">
+                                        <div className="post-image-container">
+                                            <img
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/fbd2fb878ea7aaf52d3d8047fc13d942e60c018aab9a38d5868f171782fb5c23?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="Post image"
+                                                className="post-image"
+                                            />
+                                        </div>
+                                        <div className="post-text-container">
+                                            <p className="post-text">
+                                                It serves as a central hub where users can discover, share, and
+                                                discuss the latest insights
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <footer className="post-footer">
+                                        <div className="token-list">
+                                            <div className="token-label">Tokens</div>
+                                            <div className="token-count">+ {tokens.length} more</div>
+                                        </div>
+                                        <div className="like-count">
+                                            <img
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="Like icon"
+                                                className="like-icon"
+                                            />
+                                            <div className="like-number">1.2k</div>
+                                            <img
+                                                key={users[1].id}
+                                                src={users[1].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                            <img
+                                                key={users[2].id}
+                                                src={users[2].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                        </div>
+                                        {/* <div className="user-list">
+                                            {users.map((user) => (
+                                                <img
+                                                    key={user.id}
+                                                    src={user.avatar}
+                                                    alt="User avatar"
+                                                    className="user-avatar-small"
+                                                />
+                                            ))}
+                                        </div> */}
                                     </footer>
                                 </article>
 
-
                                 <article className="post-card">
                                     <header className="post-header">
-                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
-                                        <h2 className="username">@maheshwari_009</h2>
-                                    </header>
-                                    <p className="post-content">
-                                        It serves as a central hub where users can discover, share, and
-                                        discuss the latest insights, trends, and developments within the Web3
-                                        ecosystem.
-                                        <br />
-                                        Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
-                                        delivers a personalized feed of articles, news, and updates relevant
-                                        to the topics you care about most in the Web3 industry.Community
-                                        Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
-                                        ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
-                                        <span className="see-more">see more </span>
-                                    </p>
-                                    <footer className="post-actions">
-                                        <div className="likes-container">
-                                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/078ebc073013649ae54cb9f6a8cbc9a3f4a3e76be767e180e992df45dd2a075b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Heart icon" className="heart-icon" />
-                                            <span className="likes-count">1.2k</span>
-                                        </div>
-                                        {images.map((image, index) => (
+                                        <div className="user-info">
                                             <img
-                                                key={index}
-                                                src={image.src}
-                                                alt={image.alt}
-                                                className="action-icon"
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/ea4026047dd4f10f99f7b3f7406ff02eb43622364882c53424cf223841370cd4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="User avatar"
+                                                className="user-avatar"
                                             />
-                                        ))}
+                                            <div className="username">@maheshwari_009</div>
+                                        </div>
+                                        <div className="follow-button" >Follow</div>
+                                    </header>
+                                    <div className="post-content">
+                                        <div className="post-image-container">
+                                            <img
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/fbd2fb878ea7aaf52d3d8047fc13d942e60c018aab9a38d5868f171782fb5c23?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="Post image"
+                                                className="post-image"
+                                            />
+                                        </div>
+                                        <div className="post-text-container">
+                                            <p className="post-text">
+                                                It serves as a central hub where users can discover, share, and
+                                                discuss the latest insights
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <footer className="post-footer">
+                                        <div className="token-list">
+                                            <div className="token-label">Tokens</div>
+                                            <div className="token-count">+ {tokens.length} more</div>
+                                        </div>
+                                        <div className="like-count">
+                                            <img
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="Like icon"
+                                                className="like-icon"
+                                            />
+                                            <div className="like-number">1.2k</div>
+                                            <img
+                                                key={users[1].id}
+                                                src={users[1].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                            <img
+                                                key={users[2].id}
+                                                src={users[2].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                        </div>
+                                        {/* <div className="user-list">
+                                            {users.map((user) => (
+                                                <img
+                                                    key={user.id}
+                                                    src={user.avatar}
+                                                    alt="User avatar"
+                                                    className="user-avatar-small"
+                                                />
+                                            ))}
+                                        </div> */}
                                     </footer>
                                 </article>
 
-
-
-                                <article className="post-card">
-                                    <header className="post-header">
-                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
-                                        <h2 className="username">@maheshwari_009</h2>
-                                    </header>
-                                    <p className="post-content">
-                                        It serves as a central hub where users can discover, share, and
-                                        discuss the latest insights, trends, and developments within the Web3
-                                        ecosystem.
-                                        <br />
-                                        Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
-                                        delivers a personalized feed of articles, news, and updates relevant
-                                        to the topics you care about most in the Web3 industry.Community
-                                        Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
-                                        ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
-                                        <span className="see-more">see more </span>
-                                    </p>
-                                    <footer className="post-actions">
-                                        <div className="likes-container">
-                                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/078ebc073013649ae54cb9f6a8cbc9a3f4a3e76be767e180e992df45dd2a075b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Heart icon" className="heart-icon" />
-                                            <span className="likes-count">1.2k</span>
-                                        </div>
-                                        {images.map((image, index) => (
-                                            <img
-                                                key={index}
-                                                src={image.src}
-                                                alt={image.alt}
-                                                className="action-icon"
-                                            />
-                                        ))}
-                                    </footer>
-                                </article>
 
                             </div>
                         </div>
@@ -259,6 +377,7 @@ const Odyssey = () => {
 
 
                     </div>
+
                     {/* right  */}
                     <div className="odyssey_right">
                         <div className="right_main_container">
@@ -271,6 +390,23 @@ const Odyssey = () => {
                                         ))}
                                     </div>
                                 </div>
+
+
+                                <article className="sponsored-post">
+                                    <div className="sponsored-label">SPONSORED</div>
+                                    <div className="author-info">
+                                        <img src={postData.authorImage} alt="Author profile" className="author-image" />
+                                        <div className="author-username">{postData.authorUsername}</div>
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/04625bfbab85a66f908853fca785e524c247a2693eed915bf48cf9acab6f995b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="" className="verified-badge" />
+                                        <button className="follow-button">Follow</button>
+                                    </div>
+                                    <div className="post-content">
+                                        <img src={postData.postImage} alt="Post content" className="post-image" />
+                                        <p className="post-description">{postData.postDescription}</p>
+                                    </div>
+                                </article>
+
+
                             </div>
                         </div>
                     </div>
