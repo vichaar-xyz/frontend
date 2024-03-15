@@ -62,7 +62,7 @@ const Contraverse = () => {
     <div>
 
       <div className="contraverse_main_container">
-        <div className="contraverse_container">
+        <div className="contraverse_container max_width_container ">
           <div className="contraverse_left">
             {/* Left  */}
             <div className="left_main_card_container">
@@ -130,8 +130,6 @@ const Contraverse = () => {
 
               </div>
             </div>
-
-
           </div>
 
           {/* Middle  */}
@@ -339,6 +337,7 @@ const Contraverse = () => {
 
 
           </div>
+
           {/* right  */}
           <div className="contraverse_right">
             <div className="right_main_container">
