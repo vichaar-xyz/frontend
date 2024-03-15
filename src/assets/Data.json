@@ -1,0 +1,78 @@
+
+
+
+{
+    "Main_News":[
+        {
+            "id": 1,
+            "heading":"Media house 2",
+            "paragraph":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
+            "category":"mainNews",
+            "src": "https://images.indianexpress.com/2024/03/New-ECs.jpg?w=640",
+            "alt": "Image not found",
+            "time": "1 hour ago",
+            "postBy": "Lest laborum",
+            "relatedTo": [
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+    
+                },
+                {
+                    "id":3,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+                }
+            ]
+        },
+        
+            {
+                "id": 2,
+                "heading":"Media house 2",
+                "paragraph":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
+                "category":"mainNews",
+                "src": "./Rectangle36.png",
+                "alt":"Image not found",
+                "time": "1 hour ago",
+                "postBy": "Lest laborum",
+                "relatedTo":[
+                    {
+                        "id":1,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+                    },
+                    {
+                        "id":2,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+        
+                    },
+                    {
+                        "id":3,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+                    }
+                ]
+            }
+        
+    ]
+}
+

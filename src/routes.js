@@ -4,6 +4,7 @@ import Contraverse from "./containers/Contraverse";
 import HomePage from "./containers/Homepage";
 import Lens from "./containers/Lens";
 import Odyssey from "./containers/Odyssey";
+import data from "./assets/Data.json"
 
 const routes = [
     {
@@ -24,7 +25,7 @@ const routes = [
     },
     {
         path: "/lens",
-        element: <Lens />,
+        element: <Lens props={data}/>,
     },
 ]
 export default routes;
