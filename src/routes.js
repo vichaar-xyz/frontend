@@ -4,6 +4,8 @@ import Contraverse from "./containers/Contraverse";
 import HomePage from "./containers/Homepage";
 import Lens from "./containers/Lens";
 import Odyssey from "./containers/Odyssey";
+import LongPost from "./containers/Odyssey/post";
+import Profile from "./containers/Profile";
 
 const routes = [
     {
@@ -13,6 +15,10 @@ const routes = [
     {
         path: "/odyssey",
         element: <Odyssey />,
+    },
+    {
+        path: "/odyssey/:id",
+        element: <LongPost />,
     },
     {
         path: "/contraverse",
@@ -25,6 +31,10 @@ const routes = [
     {
         path: "/lens",
         element: <Lens />,
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
     },
 ]
 export default routes;
