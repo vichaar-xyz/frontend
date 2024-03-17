@@ -54,6 +54,30 @@ const HomePage = () => {
         // </div>
     );
 
+    const handleWalletConnect = () => {
+        // Check if Phantom Wallet is installed
+        if (window.solana && window.solana.isPhantom) {
+            const solana = window.solana;
+
+            // Connect to Phantom Wallet provider
+            solana.connect()
+                .then(() => {
+                    console.log('Connected to Phantom Wallet');
+                    
+                    // Get the wallet address
+                    const walletAddress = solana.publicKey.toString();
+                    console.log('Wallet Address:', walletAddress);
+
+                })
+                .catch((error) => {
+                    console.error('Failed to connect to Phantom Wallet', error);
+                });
+        } else {
+            console.error('Phantom Wallet is not installed');
+        }
+
+    }
+
 
     return (
         <div>
@@ -69,7 +93,8 @@ const HomePage = () => {
                                 Learn Faster.
                             </div>
                             <div className="button_container">
-                                <button><span>Connect</span>  <img src={wallet} alt="icon" /> </button>
+                                {/* <button><span>Connect</span>  <img src={wallet} alt="icon" /> </button> */}
+                                <button onClick={handleWalletConnect}><span>Connect Wallet</span>  </button>
                             </div>
                         </div>
                     </div>
