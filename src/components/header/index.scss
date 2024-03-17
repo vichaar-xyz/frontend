@@ -1,6 +1,7 @@
 @import "../../assets/scss/variable.scss";
 
 .header_main_container {
+  padding: 15px 0;
   .header {
     display: flex;
     justify-content: space-between;
@@ -72,10 +73,12 @@
   }
 
   .header-icon {
-    width: 48px;
+    width: 35px;
+    height: 35px;
     aspect-ratio: 1;
     object-fit: auto;
     object-position: center;
+    cursor: pointer;
   }
 
   .profile-link {
@@ -118,5 +121,78 @@
     align-self: stretch;
     margin: auto 0;
     font-family: Mplus 1p, sans-serif;
+  }
+  .header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 100%;
+    .left_container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .logo_container {
+        color: #fff;
+        text-align: center;
+        font-family: NanumMyeongjo;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+      }
+      .search_container {
+      }
+    }
+    .right_container {
+      .left_section {
+        align-items: center;
+        display: flex;
+      }
+      .header-icons {
+      }
+      .profile_links_container {
+        display: flex;
+        align-items: center;
+        .icon_container {
+          img {
+            width: 50px;
+            height: 50px;
+            margin-right: -40px;
+            z-index: 1;
+            position: relative;
+          }
+        }
+        .address_container {
+          .bg_color_container {
+            background-image: linear-gradient(
+              to right,
+              #f41e1e 0%,
+              #e0972f 10%,
+              #b3d52e 20%,
+              #35c89c 30%,
+              #4074b2 40%,
+              #0074fc 50%,
+              #6b05fa 60%,
+              #ff09d8 70%,
+              #c02fa9 80%,
+              #fe5f05 90%
+            );
+            padding: 1px;
+            border-radius: 21px;
+            .address {
+              font-family: "Mplus 1p Bold";
+              font-size: 17px;
+              font-style: normal;
+              font-weight: 500;
+              background-color: $primary-bg;
+              padding: 10px;
+              border-radius: 21px;
+              padding-left: 50px;
+            }
+          }
+        }
+      }
+    }
   }
 }
