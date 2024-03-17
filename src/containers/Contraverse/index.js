@@ -11,11 +11,11 @@ const Contraverse = () => {
     { value: "9,991", label: "Followers" },
   ];
 
-  // const images = [
-  //   { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/e86de4dd1fe4e260bf4c3ec31987f94ee94896eba1cd21a7c4cfa3241e764570?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Like icon" },
-  //   { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/a91c164475799a3fad37f4675e97f13d03d70f0a4ec7c991ea26f80ed9d439f5?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Comment icon" },
-  //   { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f7b299f12d57ef24659cff76013f7b6fee92ea4dfb453badc499db353b28874b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Share icon" },
-  // ];
+  const images = [
+    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/e86de4dd1fe4e260bf4c3ec31987f94ee94896eba1cd21a7c4cfa3241e764570?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Like icon" },
+    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/a91c164475799a3fad37f4675e97f13d03d70f0a4ec7c991ea26f80ed9d439f5?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Comment icon" },
+    { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f7b299f12d57ef24659cff76013f7b6fee92ea4dfb453badc499db353b28874b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", alt: "Share icon" },
+  ];
 
   const reactions = [
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/b7e31d14bb8ee2a432ae40b3432567e8de5199e4e5b2dc0c8c5962f104c9a554?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&", count: "1.2k" },
@@ -56,6 +56,13 @@ const Contraverse = () => {
   const MenuItem = ({ label, active, route }) => (
     <div className={`menu-item ${active ? "active" : ""}`} onClick={() => navigate(route)}>{label}</div>
   );
+
+  const postData = {
+    authorImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/732f6482c3017e3e025ae9caca33735232b4ab90848bdbec8d9a01bfbf280301?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+    authorUsername: "@anddtrtess",
+    postImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/832dfaaa4d5611ea46a61ab310465bf39eecb6d11cf86f93e6ac02d44becf8f4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+    postDescription: "It serves as a central hub where users can discover, share, and discuss the latest insights",
+  };
 
 
   return (
@@ -162,7 +169,7 @@ const Contraverse = () => {
               <div className="content_card">
 
 
-                <article className="post-card">
+                {/* <article className="post-card">
                   <header className="post-header">
                     <div className="author-info">
                       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/148469e8143c3b004880004e3bb6a8e3d2d4e2c9d3b845c31210fe6164ccf445?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Author avatar" className="avatar" />
@@ -299,6 +306,147 @@ const Contraverse = () => {
                   <p className="post-content">
                     It serves as a central hub where users can discover, share, and
                     discuss the latest insights
+                  </p>
+                  <footer className="post-footer">
+                    <div className="reactions">
+                      {reactions.map((reaction, index) => (
+                        <div key={index} className="reaction">
+                          {reaction.icon && (
+                            <img
+                              src={reaction.icon}
+                              alt={`Reaction ${index + 1}`}
+                              className="reaction-icon"
+                            />
+                          )}
+                          {reaction.count && (
+                            <span className="reaction-count">{reaction.count}</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="actions">
+                      {actions.map((action, index) => (
+                        <img
+                          key={index}
+                          src={action.icon}
+                          alt={`Action ${index + 1}`}
+                          className="action-icon"
+                        />
+                      ))}
+                    </div>
+                  </footer>
+                </article> */}
+
+                <article className="post-card">
+                  <header className="post-header">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
+                    <h2 className="username">@maheshwari_009</h2>
+                  </header>
+                  <p className="post-content">
+                    It serves as a central hub where users can discover, share, and
+                    discuss the latest insights, trends, and developments within the Web3
+                    ecosystem.
+                    <br />
+                    Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
+                    delivers a personalized feed of articles, news, and updates relevant
+                    to the topics you care about most in the Web3 industry.Community
+                    Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
+                    ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
+                    <span className="see-more">see more </span>
+                  </p>
+                  <footer className="post-footer">
+                    <div className="reactions">
+                      {reactions.map((reaction, index) => (
+                        <div key={index} className="reaction">
+                          {reaction.icon && (
+                            <img
+                              src={reaction.icon}
+                              alt={`Reaction ${index + 1}`}
+                              className="reaction-icon"
+                            />
+                          )}
+                          {reaction.count && (
+                            <span className="reaction-count">{reaction.count}</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="actions">
+                      {actions.map((action, index) => (
+                        <img
+                          key={index}
+                          src={action.icon}
+                          alt={`Action ${index + 1}`}
+                          className="action-icon"
+                        />
+                      ))}
+                    </div>
+                  </footer>
+                </article>
+
+                <article className="post-card">
+                  <header className="post-header">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
+                    <h2 className="username">@maheshwari_009</h2>
+                  </header>
+                  <p className="post-content">
+                    It serves as a central hub where users can discover, share, and
+                    discuss the latest insights, trends, and developments within the Web3
+                    ecosystem.
+                    <br />
+                    Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
+                    delivers a personalized feed of articles, news, and updates relevant
+                    to the topics you care about most in the Web3 industry.Community
+                    Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
+                    ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
+                    <span className="see-more">see more </span>
+                  </p>
+                  <footer className="post-footer">
+                    <div className="reactions">
+                      {reactions.map((reaction, index) => (
+                        <div key={index} className="reaction">
+                          {reaction.icon && (
+                            <img
+                              src={reaction.icon}
+                              alt={`Reaction ${index + 1}`}
+                              className="reaction-icon"
+                            />
+                          )}
+                          {reaction.count && (
+                            <span className="reaction-count">{reaction.count}</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="actions">
+                      {actions.map((action, index) => (
+                        <img
+                          key={index}
+                          src={action.icon}
+                          alt={`Action ${index + 1}`}
+                          className="action-icon"
+                        />
+                      ))}
+                    </div>
+                  </footer>
+                </article>
+
+                <article className="post-card">
+                  <header className="post-header">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/87e73097cd679cb1c367d1f5b6d30edd2a83396f878336d237d436faa07c701d?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="User avatar" className="avatar" />
+                    <h2 className="username">@maheshwari_009</h2>
+                  </header>
+                  <p className="post-content">
+                    It serves as a central hub where users can discover, share, and
+                    discuss the latest insights, trends, and developments within the Web3
+                    ecosystem.
+                    <br />
+                    Key FeaturesPersonalized Feeds: Tailored to your interests, Connect3
+                    delivers a personalized feed of articles, news, and updates relevant
+                    to the topics you care about most in the Web3 industry.Community
+                    Discussions: Engage in vibrant gasgvvv hshashajh gvhgxshgsg svs
+                    ghgsshakj hvxabahsbasg bnabxnxh hbxabj bnxabsjash bnbnnx bxaba....
+                    <span className="see-more">see more </span>
                   </p>
                   <footer className="post-footer">
                     <div className="reactions">
@@ -350,6 +498,22 @@ const Contraverse = () => {
                     ))}
                   </div>
                 </div>
+
+
+                <article className="sponsored-post">
+                  <div className="sponsored-label">SPONSORED</div>
+                  <div className="author-info">
+                    <img src={postData.authorImage} alt="Author profile" className="author-image" />
+                    <div className="author-username">{postData.authorUsername}</div>
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/04625bfbab85a66f908853fca785e524c247a2693eed915bf48cf9acab6f995b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="" className="verified-badge" />
+                    <button className="follow-button">Follow</button>
+                  </div>
+                  <div className="post-content">
+                    <img src={postData.postImage} alt="Post content" className="post-image" />
+                    <p className="post-description">{postData.postDescription}</p>
+                  </div>
+                </article>
+
               </div>
             </div>
           </div>

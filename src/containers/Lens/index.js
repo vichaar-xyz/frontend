@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
-import { props } from '../../assets/Data.json'
+import Data  from '../../assets/Data.json'
 
-const Lens = ({ props }) => {
+const Lens = () => {
+    console.log(Data);
     const navigate = useNavigate();
     const [page, selectpage] = useState("Feed");
 
@@ -50,22 +51,28 @@ const Lens = ({ props }) => {
     ];
 
     const menuItems = [
-        { label: "Odyssey", active: true, route: "/odyssey" },
+        { label: "Odyssey", active: false, route: "/odyssey" },
         { label: "Controverse", active: false, route: "/contraverse" },
-        { label: "Lens", active: false, route: "/communidad" },
-        { label: "Communidad", active: false, route: "/lens" },
+        { label: "Lens", active: true, route: "/lens" },
+        { label: "Communidad", active: false, route: "/communidad" },
     ];
 
     const MenuItem = ({ label, active, route }) => (
         <div className={`menu-item ${active ? "active" : ""}`} onClick={() => navigate(route)}>{label}</div>
     );
+    const postData = {
+        authorImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/732f6482c3017e3e025ae9caca33735232b4ab90848bdbec8d9a01bfbf280301?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+        authorUsername: "@anddtrtess",
+        postImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/832dfaaa4d5611ea46a61ab310465bf39eecb6d11cf86f93e6ac02d44becf8f4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
+        postDescription: "It serves as a central hub where users can discover, share, and discuss the latest insights",
+      };
 
 
     return (
         <div>
 
             <div className="odyssey_main_container">
-                <div className="odyssey_container">
+                <div className="odyssey_container max_width_container">
                     <div className="odyssey_left">
                         {/* Left  */}
                         <div className="left_main_card_container">
@@ -133,158 +140,180 @@ const Lens = ({ props }) => {
 
                             </div>
                         </div>
-
-
                     </div>
 
-                    {/* Middle  */}
+               
 
-                    <div className='news_middle'>
-                        <div className='button_container'>
-                            <ul className='unorder-container'>
-                                <li><button className={page == "Feed" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Feed")} >Feed</button></li>
-                                <li><button className={page == "Surprise" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Surprise")}>Surprise me</button></li>
-                                <li><button className={page == "Discover" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Discover")}>Discover </button></li>
-                            </ul>
-                        </div>
+                {/* Middle  */}
 
-                        <div className='news_mainBody'>
-                            <div className=' '>
-                                {props.Main_News.map((data, index) => (
-                                    <div key={data.id} id={data.id} className='news_card '>
-                                        <div className='news_cardleft'>
-                                            <img src={data.src} alt={data.alt} className='img_newscardleft' />
+                <div className='news_middle'>
+                    <div className='button_container'>
+                        <ul className='unorder-container'>
+                            <li><button className={page == "Feed" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Feed")} >Feed</button></li>
+                            <li><button className={page == "Surprise" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Surprise")}>Surprise me</button></li>
+                            <li><button className={page == "Discover" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Discover")}>Discover </button></li>
+                        </ul>
+                    </div>
 
-                                            <div className='heading_newscardleft '>
-                                                <div className='profile_newscardleft  '></div>
-                                                <h3 className=''>{data.heading}</h3>
-                                            </div>
-                                            <p className='mb-3 font-bold'>{data.paragraph}</p>
-                                            <div className='time_newscardleft '>
-                                                <p>{data.time}</p>
-                                                <div className='gap_aftertime  '></div>
-                                                <p>{data.postBy}</p>
-                                            </div>
+                    <div className='news_mainBody'>
+                        <div className=' '>
+                            {Data.Main_News.map((data, index) => (
+                                <div key={data.id} id={data.id} className='news_card '>
+                                    <div className='news_cardleft'>
+                                        <img src={data.src} alt={data.alt} className='img_newscardleft' />
 
+                                        <div className='heading_newscardleft '>
+                                            <div className='profile_newscardleft  '></div>
+                                            <h3 className=''>{data.heading}</h3>
                                         </div>
-
-                                        <div className='news_cardright '>
-                                            {data.relatedTo.map((relatedArticle, relatedIndex) => (
-
-                                                <div key={relatedIndex} id={relatedArticle.id} className='container_newscardright'>
-                                                    <div className='heading_newscardright '>
-                                                        <div className='profile_newscardright'></div>
-                                                        <div>{relatedArticle.heading}</div>
-                                                    </div>
-                                                    <p className=' mb-1 font-bold para_newscardright'>{relatedArticle.paragraph}</p>
-                                                    <div className='time_newscardright '>
-                                                        <p>{relatedArticle.time}</p>
-                                                        <div className='gap_aftertime'></div>
-                                                        <p>{relatedArticle.postBy}</p>
-
-                                                    </div>
-
-                                                </div>
-                                            ))}
-
-
-
+                                        <p className='mb-3 font-bold'>{data.paragraph}</p>
+                                        <div className='time_newscardleft '>
+                                            <p>{data.time}</p>
+                                            <div className='gap_aftertime  '></div>
+                                            <p>{data.postBy}</p>
                                         </div>
-
 
                                     </div>
 
+                                    <div className='news_cardright '>
+                                        {data.relatedTo.map((relatedArticle, relatedIndex) => (
 
+                                            <div key={relatedIndex} id={relatedArticle.id} className='container_newscardright'>
+                                                <div className='heading_newscardright '>
+                                                    <div className='profile_newscardright'></div>
+                                                    <div>{relatedArticle.heading}</div>
+                                                </div>
+                                                <p className=' mb-1 font-bold para_newscardright'>{relatedArticle.paragraph}</p>
+                                                <div className='time_newscardright '>
+                                                    <p>{relatedArticle.time}</p>
+                                                    <div className='gap_aftertime'></div>
+                                                    <p>{relatedArticle.postBy}</p>
 
-                                ))}
+                                                </div>
 
-                            </div>
-
-
-                        </div >
-
-
-
-                    </div>
-
-                    {/* right  */}
-                    <div className="odyssey_right">
-                        <div className="right_main_container">
-                            <div className="right_container">
-                                <div className="tab_card">
-                                    <div className="explore-menu">
-                                        <h2 className="explore-heading">Explore</h2>
-                                        {menuItems.map((item) => (
-                                            <MenuItem key={item.label} {...item} />
+                                            </div>
                                         ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    {/* for you page*/}
-                    <div className='foryou_page'>
-                        <h3 className='h3'>For you</h3>
-                        <p className='para'>Recommendation based on your activity ? </p>
-                        <div className='container_foryoupage'>
-                            {props.Foryou_page.map((data, index) => (
 
-                                <div key={index} index={data.id} className='card_foryoupage'>
-                                    <div className='left_foryoupage'>
-                                        <div className='heading'>
-                                            <div className='profile_foryoupage'></div>
-                                            <h3 className='heading_foryoupage'>{data.heading}</h3>
-                                        </div>
-                                        <p className='para_foryoupage'>{data.paragraph}</p>
-                                        <p className='time'>{data.time}</p>
+
                                     </div>
-                                    <div className='right_foryoupage'>
-                                        <img src={data.src} alt={data.alt} className='img_rightforyoupage' />
-                                    </div>
+
 
                                 </div>
+
+
 
                             ))}
+
                         </div>
-                    </div>
-                    {/* for you cards */}
-                    <div className='foryou_cards'>
-                        <h3 className='h3'>For you</h3>
-                        <p className='para'>Recommendation based on your activity ? </p>
-                        <div className='container_foryoucards'>
-                            {props.Foryou_cards.map((data, index) => (
-
-                                <div key={index} id={data.id} className='card_foryoucards'>
-                                    <p>{data.cardname}</p>
-                                    {data.article.map((data, index) => (
-
-                                        <div key={index} id={data.id} className='single_card'>
-                                            <div className='left_foryoucards'>
-                                                <div className='heading'>
-                                                    <div className='profile_foryoucards'></div>
-                                                    <h3 className='heading_foryoucards'>{data.heading}</h3>
-                                                </div>
-                                                <p className='para_foryoucards'>{data.paragraph}</p>
-                                                <p className='time'>{data.time}</p>
-                                            </div>
-                                            <div className='right_foryoucards'>
-                                                <img src={data.src} alt={data.alt} className='img_rightforyoucards' />
-                                            </div>
-                                        </div>
-                                    ))}
 
 
-                                </div>
+                    </div >
 
-                            ))}
-                        </div>
-                    </div>
 
 
                 </div>
+
+                {/* right  */}
+                <div className="contraverse_right">
+                    <div className="right_main_container">
+                    <div className="right_container">
+                        <div className="tab_card">
+                        <div className="explore-menu">
+                            <h2 className="explore-heading">Explore</h2>
+                            {menuItems.map((item) => (
+                            <MenuItem key={item.label} {...item} />
+                            ))}
+                        </div>
+                        </div>
+
+
+                        <article className="sponsored-post">
+                        <div className="sponsored-label">SPONSORED</div>
+                        <div className="author-info">
+                            <img src={postData.authorImage} alt="Author profile" className="author-image" />
+                            <div className="author-username">{postData.authorUsername}</div>
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/04625bfbab85a66f908853fca785e524c247a2693eed915bf48cf9acab6f995b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="" className="verified-badge" />
+                            <button className="follow-button">Follow</button>
+                        </div>
+                        <div className="post-content">
+                            <img src={postData.postImage} alt="Post content" className="post-image" />
+                            <p className="post-description">{postData.postDescription}</p>
+                        </div>
+                        </article>
+
+                    </div>
+                    </div>
+                </div>
             </div>
+                {/* for you page*/}
+                <div className='foryou_page max_width_container'>
+                    <h3 className='h3'>For you</h3>
+                    <p className='para'>Recommendation based on your activity ? </p>
+                    <div className='container_foryoupage'>
+                        {Data.Foryou_page.map((data, index) => (
+
+                            <div key={index} index={data.id} className='card_foryoupage'>
+                                <div className='left_foryoupage'>
+                                    <div className='heading'>
+                                        <div className='profile_foryoupage'></div>
+                                        <h3 className='heading_foryoupage'>{data.heading}</h3>
+                                    </div>
+                                    <p className='para_foryoupage'>{data.paragraph}</p>
+                                    <p className='time'>{data.time}</p>
+                                </div>
+                                <div className='right_foryoupage'>
+                                    <img src={data.src} alt={data.alt} className='img_rightforyoupage' />
+                                </div>
+
+                            </div>
+
+                        ))}
+                    </div>
+                </div>
+            
+
+                {/* for you cards */}
+                <div className='foryou_cards max_width_container'>
+                    <h3 className='h3'>For you</h3>
+                    <p className='para'>Recommendation based on your activity ? </p>
+                    <div className='container_foryoucards'>
+                        {Data.Foryou_cards.map((data, index) => (
+
+                            <div key={index} id={data.id} className='card_foryoucards'>
+                                <p>{data.cardname}</p>
+                                
+                                {data.article.map((data, index) => (
+
+                                    <div key={index} id={data.id} >
+                                    <hr className='horizantal'/>
+                                    <div className='single_card'>
+                                        <div className='left_foryoucards'>
+                                            <div className='heading'>
+                                                <div className='profile_foryoucards'></div>
+                                                <h3 className='heading_foryoucards'>{data.heading}</h3>
+                                            </div>
+                                            <p className='para_foryoucards'>{data.paragraph}</p>
+                                            <p className='time'>{data.time}</p>
+                                        </div>
+                                        <div className='right_foryoucards'>
+                                            <img src={data.src} alt={data.alt} className='img_rightforyoucards' />
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                ))}
+
+
+                            </div>
+
+                        ))}
+                    </div>
+                </div>
+
+
         </div>
+        </div >
     )
 }
 
