@@ -40,6 +40,41 @@ a {
 
 .max_width_container {
   max-width: 1250px;
-  padding: 0 10px;
+  padding: 0 15px;
   margin: auto;
+}
+
+// Search
+.custom_search {
+  // &.ant-search {
+  margin-right: -25px;
+  .ant-input-wrapper {
+    .ant-input {
+      border-radius: 20px;
+      border-radius: 21px;
+      background: #1a2730;
+      color: white;
+      padding: 7px;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.38);
+      }
+    }
+    .ant-input-group-addon {
+      z-index: 1;
+      &:last-child {
+        background-color: transparent;
+        inset-inline-start: -40px;
+      }
+      .ant-input-search-button {
+        height: 30px;
+        background: #1a2730;
+        border-radius: 50% !important;
+        border: none;
+        &:hover {
+          background: #81818124;
+        }
+      }
+    }
+  }
+  // }
 }
