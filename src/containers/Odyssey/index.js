@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './index.scss';
+import * as borsh from "@project-serum/borsh";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 const Odyssey = () => {
 
@@ -65,6 +67,59 @@ const Odyssey = () => {
         postImage: "https://cdn.builder.io/api/v1/image/assets/TEMP/832dfaaa4d5611ea46a61ab310465bf39eecb6d11cf86f93e6ac02d44becf8f4?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
         postDescription: "It serves as a central hub where users can discover, share, and discuss the latest insights",
     };
+
+
+
+
+    const BLOG_ACCOUNT_DATA_LAYOUT = borsh.struct([
+        borsh.publicKey("authorityPubkey"),
+        borsh.u8("bump"),
+        borsh.u8("postCount"),
+    ]);
+
+    const POST_ACCOUNT_DATA_LAYOUT = borsh.struct([
+        borsh.publicKey("author"),
+        borsh.publicKey("blog"),
+        borsh.u8("bump"),
+        borsh.str("slug"),
+        borsh.str("title"),
+        borsh.str("content"),
+    ]);
+
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+
+    const handleGetPost = async () => {
+        console.log("in func");
+        const connection = new Connection("https://api.devnet.solana.com", "confirmed");
+
+        const [blogAccount] = await PublicKey.findProgramAddress(
+            [encoder.encode("blog"), user.publicKey.toBuffer()],
+            MY_PROGRAM_ID
+        );
+
+        const [postAccount] = await PublicKey.findProgramAddress(
+            [encoder.encode("post"), encoder.encode("slug-1"), user.publicKey.toBuffer()],
+            MY_PROGRAM_ID
+        );
+
+        const blogAccountInfo = await connection.getAccountInfo(blogAccount);
+        const blogAccountState = BLOG_ACCOUNT_DATA_LAYOUT.decode(
+            Buffer.from(blogAccountInfo.data)
+        );
+        console.log("Blog account state: ", blogAccountState);
+
+        const postAccountInfo = await connection.getAccountInfo(postAccount);
+        const postAccountState = POST_ACCOUNT_DATA_LAYOUT.decode(
+            Buffer.from(postAccountInfo.data)
+        );
+        console.log("Post account state: ", postAccountState);
+    }
+
+
+    useEffect(() => {
+        // handleGetPost()
+    }, [])
 
 
 
