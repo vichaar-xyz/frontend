@@ -1,12 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './index.scss';
 import * as borsh from "@project-serum/borsh";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { Button, Modal } from 'antd';
+import FroalaEditor from 'react-froala-wysiwyg';
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import FroalaEditorComponent from 'react-froala-wysiwyg';
+import 'froala-editor/js/plugins/image.min.js'
+import 'froala-editor/js/plugins/char_counter.min.js'
+import axios from 'axios';
+import { PINATA_API_KEY, YOUR_PINATA_SECRET_API_KEY } from '../../constants/common';
 
 const Odyssey = () => {
-
     const navigate = useNavigate();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [postTitel, setPostTitle] = useState("");
+    const [postPara, setPostPara] = useState("")
+    const [postParaImg, setPostParaImg] = useState("")
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     const stats = [
         { value: "6,664", label: "Following" },
@@ -49,6 +74,25 @@ const Odyssey = () => {
             avatarUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/d4248454420d27552005e797acba8164c813709e08c59df54f818840234a161b?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
         },
     ];
+
+
+    const tags = [
+        'DAO',
+        'NFT',
+        'DeFi',
+        'Tokens',
+        'DeX',
+        'Funding',
+        'Startup',
+        'Reputation',
+        'Community Engagement',
+        'Protocol layers',
+        'Cryptocurrency',
+        'Product Launch',
+        'DID',
+        'Infrastructural Layers',
+    ];
+
 
     const menuItems = [
         { label: "Odyssey", active: true, route: "/odyssey" },
@@ -116,12 +160,120 @@ const Odyssey = () => {
         console.log("Post account state: ", postAccountState);
     }
 
-
     useEffect(() => {
         // handleGetPost()
     }, [])
 
 
+    // Function to handle changes in the editor content
+    const handlePostChange = (content) => {
+        const editorElement = document.querySelector('.fr-element');
+        let editorText = '';
+        let imageUrls = [];
+
+        if (editorElement) {
+            editorText = editorElement.textContent;
+            imageUrls = extractImageUrls(editorElement);
+            console.log('Editor Text:', editorText);
+            console.log('Image URLs:', imageUrls);
+
+            // Set state inside the if block
+            setPostPara(editorText);
+            setPostParaImg(imageUrls);
+        }
+    };
+
+    const extractImageUrls = (editorElement) => {
+        const imgElements = editorElement.querySelectorAll('img');
+        const imageUrls = Array.from(imgElements).map((img) => img.src);
+        return imageUrls;
+    };
+
+    const handleTagClick = (tag) => {
+        if (selectedTags.length < 5) {
+            const newSelectedTags = [...selectedTags];
+            if (newSelectedTags.includes(tag)) {
+                const index = newSelectedTags.indexOf(tag);
+                newSelectedTags.splice(index, 1);
+            } else {
+                newSelectedTags.push(tag);
+            }
+            setSelectedTags(newSelectedTags);
+        }
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const userTitle = postTitel;
+            const userParagraph = postPara;
+            const userTags = selectedTags;
+            const userBlobUrls = postParaImg;
+            const ipfsImageLinks = [];
+
+            // Upload each image to IPFS and store the links
+            for (const imageUrl of userBlobUrls) {
+                const responses = await axios.get(imageUrl, { responseType: 'blob' });
+                const file = new File([responses.data], 'image.jpg', { type: 'image/jpeg' });
+
+                const fileData = new FormData();
+                fileData.append('file', file);
+
+                const responseData = await axios.post(
+                    'https://api.pinata.cloud/pinning/pinFileToIPFS',
+                    fileData,
+                    {
+                        headers: {
+                            'pinata_api_key': PINATA_API_KEY,
+                            'pinata_secret_api_key': YOUR_PINATA_SECRET_API_KEY,
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    }
+                );
+
+                const fileDataUrls = 'https://gateway.pinata.cloud/ipfs/' + responseData.data.IpfsHash;
+                ipfsImageLinks.push(fileDataUrls); // Pushing the IPFS link to the array
+            }
+
+            // Created JSON object with IPFS links
+            const postData = {
+                title: userTitle,
+                paragraph: userParagraph,
+                tags: userTags,
+                images: ipfsImageLinks,
+                wallet_address: "user address",
+                timestamp: "date - time",
+                rating: {
+                    like: 23,
+                    disLike: 5675,
+                }, // For now using hardcode data
+                user_name: "Abdul 123",// For now using hardcode data
+                postType: "Long",
+                quoteUrl: ""
+            };
+
+            // Upload JSON object to IPFS
+            const jsonBlob = new Blob([JSON.stringify(postData)], { type: 'application/json' });
+            const formData = new FormData();
+            formData.append("file", jsonBlob, "post.json");
+
+            const response = await axios.post(
+                'https://api.pinata.cloud/pinning/pinFileToIPFS',
+                formData,
+                {
+                    headers: {
+                        'pinata_api_key': PINATA_API_KEY,
+                        'pinata_secret_api_key': YOUR_PINATA_SECRET_API_KEY,
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            );
+
+            const jsonUrl = "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash;
+            console.log("JSON file uploaded to IPFS:", jsonUrl);
+        } catch (error) {
+            console.error("Error uploading to IPFS:", error);
+        }
+    }
 
     return (
         <div>
@@ -201,7 +353,6 @@ const Odyssey = () => {
 
                     {/* Middle  */}
                     <div className="odyssey_middle">
-
                         <div className="post_main_container">
                             <div className="post_container">
                                 <section className="whats-happening-card">
@@ -212,15 +363,13 @@ const Odyssey = () => {
                                             className="profile-image"
                                             loading="lazy"
                                         />
-                                        <h2 className="whats-happening-text">What's happening</h2>
+                                        <h2 className="whats-happening-text" onClick={showModal}>{postTitel ? postTitel.substring(0, 25) + "..." : `What's happening`}</h2>
 
                                     </div>
                                     <div className="right">
-                                        <button>Post</button>
+                                        <button onClick={handleSubmit}>Post</button>
                                     </div>
                                 </section>
-
-
                             </div>
                         </div>
 
@@ -429,8 +578,6 @@ const Odyssey = () => {
                             </div>
                         </div>
 
-
-
                     </div>
 
                     {/* right  */}
@@ -465,6 +612,59 @@ const Odyssey = () => {
                             </div>
                         </div>
                     </div>
+
+
+                    {/* Post Modal  */}
+
+                    <Modal title="Create a Post"
+                        open={isModalOpen}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        centered={true}
+                        footer={false}
+                        width={700}
+                    >
+                        <div className="post_main_container">
+                            <div className="post_container">
+                                <div className="title_container">
+                                    <input type="Title" value={postTitel} onChange={(e) => setPostTitle(e.target.value)} className='title_input' placeholder='Title' />
+                                </div>
+                                <div className="post_container">
+                                    <FroalaEditorComponent
+                                        tag='textarea'
+                                        config={{
+                                            placeholderText: 'Edit Your Content Here!',
+                                            charCounterCount: true
+                                        }}
+                                        onModelChange={handlePostChange}
+                                    />
+                                </div>
+                                <div className="tags_container">
+                                    <div className="tag-selection">
+
+                                        <ul>
+                                            {tags.map((tag) => (
+                                                <li key={tag}>
+                                                    <input
+                                                        type="checkbox"
+                                                        id={tag}
+                                                        checked={selectedTags.includes(tag)}
+                                                        onChange={() => handleTagClick(tag)}
+                                                    />
+                                                    <label htmlFor={tag}>{tag}</label>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        {selectedTags.length > 0 && (
+                                            <p>Selected Tags: {selectedTags.join(', ')}</p>
+                                        )}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </Modal>
+
                 </div>
             </div>
         </div>
