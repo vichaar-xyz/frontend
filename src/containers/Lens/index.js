@@ -4,7 +4,15 @@ import './index.scss';
 import Data  from '../../assets/Data.json'
 
 const Lens = () => {
-    console.log(Data);
+    const [value,setValue] =useState(" ");
+    
+    async function ak(){
+        const resourse = await fetch("");
+        const result = await resourse.json();
+        console.log(result);
+        
+    }
+    ak();
     const navigate = useNavigate();
     const [page, selectpage] = useState("Feed");
 
