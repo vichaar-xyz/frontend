@@ -6,8 +6,10 @@ import axios from "axios"
 
 const Lens = () => {
     const [datas, setData] = useState([]);
+    const [loading, setLoading] = useState(false)
     console.log(datas);
     const getData = async () => {
+        setLoading(true)
         axios
             .get(
                 "https://newsapi.org/v2/everything?q=Crypto&from=2024-03-19&sortBy=popularity&apiKey=5bd5d46ce67f4acfa852723c81cc6d65"
@@ -15,8 +17,10 @@ const Lens = () => {
             .then((response) => {
                 console.log(response.data.articles);
                 setData(response.data.articles);
+                setLoading(false)
             })
             .catch((error) => {
+                setLoading(false)
                 console.log("Error:", error);
             });
     };
@@ -30,12 +34,12 @@ const Lens = () => {
     const [page, selectpage] = useState("Feed");
 
     const Categorys = [
-        {id:1, Category:"Gaming"},
-        {id:2, Category:"Consumer tech"},
-        {id:3, Category:"DAO/Community"},
-        {id:4, Category:"DeFi"},
-        {id:5, Category:"Consumer tech"},
-        {id:6, Category:"Start-up-funding"}
+        { id: 1, Category: "Gaming" },
+        { id: 2, Category: "Consumer tech" },
+        { id: 3, Category: "DAO/Community" },
+        { id: 4, Category: "DeFi" },
+        { id: 5, Category: "Consumer tech" },
+        { id: 6, Category: "Start-up-funding" }
     ]
 
     const stats = [
@@ -97,6 +101,10 @@ const Lens = () => {
         postDescription: "It serves as a central hub where users can discover, share, and discuss the latest insights",
     };
 
+
+    // if (loading) {
+    //     return <h2>Loading...</h2>
+    // }
 
     return (
         <div>
@@ -185,58 +193,53 @@ const Lens = () => {
                             </ul>
                         </div>
 
-                        <div className='news_mainBody'>
-                            <div className=' '>
+                        {loading ? <h2 style={{ textAlign: "center", margin: "auto" }}>Loading ...</h2> :
+                            <div className='news_mainBody'>
+                                <div className=' '>
+                                    {datas.slice(2, 4).map((data, i) => {
+                                        return (
 
-                                {datas.slice(2, 4).map((data, i) => {
-                                    return (
+                                            <div key={i} className='news_card '>
+                                                <div className='news_cardleft'>
+                                                    <img src={data.urlToImage} alt="Image not found" className='img_newscardleft' />
 
-                                        <div key={i} className='news_card '>
-                                            <div className='news_cardleft'>
-                                                <img src={data.urlToImage} alt="Image not found" className='img_newscardleft' />
-
-                                                <div className='heading_newscardleft '>
-                                                    <div className='profile_newscardleft  '></div>
-                                                    <h3 className=''>{data.title}</h3>
-                                                </div>
-                                                <p className='mb-3 font-bold'>{data.description}</p>
-                                                <div className='time_newscardleft '>
-                                                    <p>{data.publishedAt}</p>
-                                                    <div className='gap_aftertime  '></div>
-                                                    <p>@{data.author}</p>
-                                                </div>
-                                            </div>
-
-
-
-                                            <div className='news_cardright '>
-                                                {datas.slice((i + 4), (i + 6)).map((data, i) => {
-                                                    return <div key={i} className='container_newscardright'>
-                                                        <div className='heading_newscardright '>
-                                                            <div className='profile_newscardright'></div>
-                                                            <div>{data.title}</div>
-                                                        </div>
-                                                        <p className=' mb-1 font-bold para_newscardright'>{data.description}</p>
-                                                        <div className='time_newscardright '>
-                                                            <p>{data.publishedAt}</p>
-                                                            <div className='gap_aftertime'></div>
-                                                            <p>@{data.author}</p>
-                                                        </div>
+                                                    <div className='heading_newscardleft '>
+                                                        <div className='profile_newscardleft  '></div>
+                                                        <h3 className=''>{(data.title).substring(0, 50)}</h3>
                                                     </div>
-                                                })}
+                                                    <p className='mb-3 font-bold'>{(data.description).substring(0, 80)}</p>
+                                                    <div className='time_newscardleft '>
+                                                        <p>{data.publishedAt}</p>
+                                                        <div className='gap_aftertime  '></div>
+                                                        <p>@{(data.author).substring(0, 10)}</p>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div className='news_cardright '>
+                                                    {datas.slice((i + 4), (i + 6)).map((data, i) => {
+                                                        return <div key={i} className='container_newscardright'>
+                                                            <div className='heading_newscardright '>
+                                                                <div className='profile_newscardright'></div>
+                                                                <div className='title'>{data.title}</div>
+                                                            </div>
+                                                            <p className=' mb-1 font-bold para_newscardright'>{(data.description).substring(0, 200)}</p>
+                                                            <div className='time_newscardright '>
+                                                                <p>{data.publishedAt}</p>
+                                                                <div className='gap_aftertime'></div>
+                                                                <p>@{(data.author).substring(0, 10)}</p>
+                                                            </div>
+                                                        </div>
+                                                    })}
+                                                </div>
                                             </div>
+                                        )
+                                    })}
+                                </div>
+                            </div >
+                        }
 
-                                        </div>
-
-
-                                    )
-                                })}
-
-                            </div>
-
-
-
-                        </div >
 
 
 
@@ -305,38 +308,40 @@ const Lens = () => {
                 <div className='foryou_cards max_width_container'>
                     <h3 className='h3'>For you</h3>
                     <p className='para'>Recommendation based on your activity ? </p>
-                    <div className='container_foryoucards'>
-                        {Categorys.map((data, index) => (
+                    {/* <div className='container_foryoucards'>
+                        {Categorys?.map((data, index) => (
 
-                            <div key={index} id={data.id} className='card_foryoucards'>
+                            <div key={index} className='card_foryoucards' >
                                 <p>{data.Categorys}</p>
 
-                                {data.article.map((data, index) => (
+                                {
+                                    data.article.map((data, index) => (
 
-                                    <div key={index} id={data.id} >
-                                        <hr className='horizantal' />
-                                        <div className='single_card'>
-                                            <div className='left_foryoucards'>
-                                                <div className='heading'>
-                                                    <div className='profile_foryoucards'></div>
-                                                    <h3 className='heading_foryoucards'>{data.heading}</h3>
+                                        <div key={index} id={index} >
+                                            <hr className='horizantal' />
+                                            <div className='single_card'>
+                                                <div className='left_foryoucards'>
+                                                    <div className='heading'>
+                                                        <div className='profile_foryoucards'></div>
+                                                        <h3 className='heading_foryoucards'>{data.heading}</h3>
+                                                    </div>
+                                                    <p className='para_foryoucards'>{data.paragraph}</p>
+                                                    <p className='time'>{data.time}</p>
                                                 </div>
-                                                <p className='para_foryoucards'>{data.paragraph}</p>
-                                                <p className='time'>{data.time}</p>
-                                            </div>
-                                            <div className='right_foryoucards'>
-                                                <img src={data.src} alt={data.alt} className='img_rightforyoucards' />
-                                            </div>
+                                                <div className='right_foryoucards'>
+                                                    <img src={data.src} alt={data.alt} className='img_rightforyoucards' />
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))
+                                }
 
 
                             </div>
 
                         ))}
-                    </div>
+                    </div> */}
                 </div>
                 <div>
 

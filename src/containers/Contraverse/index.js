@@ -77,8 +77,8 @@ const Contraverse = () => {
   const menuItems = [
     { label: "Odyssey", active: false, route: "/Odyssey" },
     { label: "Controverse", active: true, route: "/contraverse" },
-    { label: "Lens", active: false, route: "/communidad" },
-    { label: "Communidad", active: false, route: "/lens" },
+    { label: "Lens", active: false, route: "/lens" },
+    { label: "Communidad", active: false, route: "/communidad" },
   ];
 
   const tags = [
