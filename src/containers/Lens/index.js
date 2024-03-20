@@ -29,6 +29,15 @@ const Lens = () => {
     const navigate = useNavigate();
     const [page, selectpage] = useState("Feed");
 
+    const Categorys = [
+        {id:1, Category:"Gaming"},
+        {id:2, Category:"Consumer tech"},
+        {id:3, Category:"DAO/Community"},
+        {id:4, Category:"DeFi"},
+        {id:5, Category:"Consumer tech"},
+        {id:6, Category:"Start-up-funding"}
+    ]
+
     const stats = [
         { value: "6,664", label: "Following" },
         { value: "9,991", label: "Followers" },
@@ -291,10 +300,10 @@ const Lens = () => {
                     <h3 className='h3'>For you</h3>
                     <p className='para'>Recommendation based on your activity ? </p>
                     <div className='container_foryoucards'>
-                        {NewsData.Foryou_cards.map((data, index) => (
+                        {Categorys.map((data, index) => (
 
                             <div key={index} id={data.id} className='card_foryoucards'>
-                                <p>{data.cardname}</p>
+                                <p>{data.Categorys}</p>
 
                                 {data.article.map((data, index) => (
 
