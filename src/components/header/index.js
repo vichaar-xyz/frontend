@@ -57,7 +57,7 @@ function Header() {
 
                 <div className="header_container max_width_container">
                     <div className="left_container">
-                        <div className="logo_container">Vichar.</div>
+                        <Link to="/"><div className="logo_container">Vichar.</div></Link>
                         <div className="search_container">
                             <Search
                                 placeholder="Search"
