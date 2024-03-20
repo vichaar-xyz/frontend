@@ -6,6 +6,9 @@ import Lens from "./containers/Lens";
 import Odyssey from "./containers/Odyssey";
 import LongPost from "./containers/Odyssey/post";
 import Profile from "./containers/Profile";
+import Events from "./containers/Communidad/Events";
+import Feed from "./containers/Communidad/Feed";
+import Communities from "./containers/Communidad/Communities";
 
 const routes = [
     {
@@ -26,7 +29,7 @@ const routes = [
     },
     {
         path: "/communidad",
-        element: <Communidad />,
+        element:<Communidad/>,
     },
     {
         path: "/lens",
