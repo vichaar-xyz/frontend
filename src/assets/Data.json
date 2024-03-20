@@ -1,0 +1,266 @@
+
+
+
+{
+    "Main_News":[
+        {
+            "id": 1,
+            "heading":"Media house 2",
+            "paragraph":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
+            "category":"mainNews",
+            "src": "https://m-cdn.phonearena.com/images/review/6174-wide-two_940/Samsung-Galaxy-Fit-3-Review-Most-smartwatch-features-at-a-fraction-of-the-price.webp?",
+            "alt": "Image not found",
+            "time": "1 hour ago",
+            "postBy": "Lest laborum",
+            "relatedTo": [
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+    
+                },
+                {
+                    "id":3,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                    "time": "1 hour ago",
+                    "postBy":"Lest laborum"
+                }
+            ]
+        },
+        
+            {
+                "id": 2,
+                "heading":"Media house 2",
+                "paragraph":"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
+                "category":"mainNews",
+                "src": "https://www.livemint.com/lm-img/img/2024/03/15/600x338/Kavitha_1697959973118_1710495870592.jpg",
+                "alt":"Image not found",
+                "time": "1 hour ago",
+                "postBy": "Lest laborum",
+                "relatedTo":[
+                    {
+                        "id":1,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+                    },
+                    {
+                        "id":2,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+        
+                    },
+                    {
+                        "id":3,
+                        "heading":"Media house 1",
+                        "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ",
+                        "time": "1 hour ago",
+                        "postBy":"Lest laborum"
+                    }
+                ]
+            }
+        
+    ],
+
+
+    "Foryou_page":[
+        {
+            "id":1,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://images.moneycontrol.com/static-mcnews/2024/03/Stock-Market-Selloff-5-770x433.jpg?",
+            "alt":"Image not found"
+        },
+        {
+            "id":2,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://c.ndtvimg.com/2023-05/qseui84_tesla-generic-reuters_625x300_16_May_23.jpg",
+            "alt":"Image not found"
+        },
+        {
+            "id":3,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://m-cdn.phonearena.com/images/review/6174-wide-two_940/Samsung-Galaxy-Fit-3-Review-Most-smartwatch-features-at-a-fraction-of-the-price.webp?",
+            "alt":"Image not found"
+        },
+        {
+            "id":4,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://www.hindustantimes.com/ht-img/img/2024/03/15/550x309/Modi_roadshow_coimbatore_1710504882484_1710504882645.jpg",
+            "alt":"Image not found"
+        },
+        {
+            "id":5,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://images.news18.com/ibnlive/uploads/2024/02/young-dhruv-jurel-drawing-comparisons-with-legendary-ms-dhoni-2024-02-97ff1582619618f07f9cf62febe91e33.jpg?",
+            "alt":"Image not found"
+        },
+        {
+            "id":6,
+            "heading":"Media house 1",
+            "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. ",
+            "time":"1 hour ago",
+            "src":"https://english.cdn.zeenews.com/sites/default/files/styles/zm_700x400/public/2024/03/15/1376854-mea-caa.jpg?",
+            "alt":"Image not found"
+        }
+
+    ],
+
+    "Foryou_cards":[
+        {
+            "id":1,
+            "cardname":"Gaming",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://c.ndtvimg.com/2023-05/qseui84_tesla-generic-reuters_625x300_16_May_23.jpg",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://english.cdn.zeenews.com/sites/default/files/styles/zm_700x400/public/2024/03/15/1376854-mea-caa.jpg?",
+                    "alt":"Image not found"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "cardname":"Consumer tech",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://images.indianexpress.com/2024/03/New-ECs.jpg?w=640",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://images.moneycontrol.com/static-mcnews/2024/03/Stock-Market-Selloff-5-770x433.jpg?",
+                    "alt":"Image not found"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "cardname":"DAO/Community",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://images.news18.com/ibnlive/uploads/2024/02/young-dhruv-jurel-drawing-comparisons-with-legendary-ms-dhoni-2024-02-97ff1582619618f07f9cf62febe91e33.jpg?",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://m-cdn.phonearena.com/images/review/6174-wide-two_940/Samsung-Galaxy-Fit-3-Review-Most-smartwatch-features-at-a-fraction-of-the-price.webp?",
+                    "alt":"Image not found"
+                }
+            ]
+        },
+        {
+            "id":4,
+            "cardname":"DeFi",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://www.hindustantimes.com/ht-img/img/2024/03/15/550x309/Modi_roadshow_coimbatore_1710504882484_1710504882645.jpg",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://static.toiimg.com/thumb/msid-108533617,imgsize-391728,width-400,resizemode-4/108533617.jpg?",
+                    "alt":"Image not found"
+                }
+            ]
+        },
+        {
+            "id":5,
+            "cardname":"Consumer tech",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://static.toiimg.com/thumb/msid-108533151,imgsize-17838,width-400,resizemode-4/108533151.jpg",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://images.odishatv.in/uploadimage/library/16_9/16_9_0/recent_photo_1710565057.webp",
+                    "alt":"Image not found"
+                }
+            ]
+        },
+        {
+            "id":6,
+            "cardname":"Start-up-funding",
+            "article":[
+                {
+                    "id":1,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud  ",
+                    "time":"1 hour ago",
+                    "src":"https://bsmedia.business-standard.com/_media/bs/img/article/2024-02/09/full/1707502536-7843.jpg?",
+                    "alt":"Image not found"
+                },
+                {
+                    "id":2,
+                    "heading":"Media house 1",
+                    "paragraph":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ad minim veniam, quis nostrud . ",
+                    "time":"1 hour ago",
+                    "src":"https://www.knnindia.co.in/uploads/newsfiles/EMPS2-24-15-3-2024.jpg",
+                    "alt":"Image not found"
+                }
+            ]
+        }
+    ]
+}
+
