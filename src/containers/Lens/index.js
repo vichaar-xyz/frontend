@@ -6,26 +6,26 @@ import axios from "axios"
 
 const Lens = () => {
     const [datas, setData] = useState([]);
-      console.log(datas);
-      const getData = async () => {
+    console.log(datas);
+    const getData = async () => {
         axios
-          .get(
-            "https://newsapi.org/v2/everything?q=crypto&sortBy=popularity&apiKey=45ca1b524ed94221a4ae2a373c8762f6"
-          )
-          .then((response) => {
-            console.log(response.data.articles);
-            setData(response.data.articles);
-          })
-          .catch((error) => {
-            console.log("Error:", error);
-          });
-      };
-    
-      
-      getData();
-      
+            .get(
+                "https://newsapi.org/v2/everything?q=Crypto&from=2024-03-19&sortBy=popularity&apiKey=5bd5d46ce67f4acfa852723c81cc6d65"
+            )
+            .then((response) => {
+                console.log(response.data.articles);
+                setData(response.data.articles);
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+            });
+    };
 
-    
+    useEffect(() => {
+        getData();
+    }, [])
+
+
     const navigate = useNavigate();
     const [page, selectpage] = useState("Feed");
 
@@ -179,46 +179,52 @@ const Lens = () => {
                         <div className='news_mainBody'>
                             <div className=' '>
 
-                                {datas.slice(1,3).map((data, i) => { 
-                                     return ( 
-                                        
-                                     <div key={i} className='news_card '>                                      
-                                          <div className='news_cardleft'>
-                                            <img src={data.urlToImage} alt="Image not found" className='img_newscardleft' />
+                                {datas.slice(2, 4).map((data, i) => {
+                                    return (
 
-                                            <div className='heading_newscardleft '>
-                                                <div className='profile_newscardleft  '></div>
-                                                <h3 className=''>{data.title}</h3>
+                                        <div key={i} className='news_card '>
+                                            <div className='news_cardleft'>
+                                                <img src={data.urlToImage} alt="Image not found" className='img_newscardleft' />
+
+                                                <div className='heading_newscardleft '>
+                                                    <div className='profile_newscardleft  '></div>
+                                                    <h3 className=''>{data.title}</h3>
+                                                </div>
+                                                <p className='mb-3 font-bold'>{data.description}</p>
+                                                <div className='time_newscardleft '>
+                                                    <p>{data.publishedAt}</p>
+                                                    <div className='gap_aftertime  '></div>
+                                                    <p>@{data.author}</p>
+                                                </div>
                                             </div>
-                                            <p className='mb-3 font-bold'>{data.description}</p>
-                                            <div className='time_newscardleft '>
-                                                <p>{data.publishedAt}</p>
-                                                <div className='gap_aftertime  '></div>
-                                                <p>@{data.author}</p>
+
+
+
+                                            <div className='news_cardright '>
+                                                {datas.slice((i + 4), (i + 6)).map((data, i) => {
+                                                    return <div key={i} className='container_newscardright'>
+                                                        <div className='heading_newscardright '>
+                                                            <div className='profile_newscardright'></div>
+                                                            <div>{data.title}</div>
+                                                        </div>
+                                                        <p className=' mb-1 font-bold para_newscardright'>{data.description}</p>
+                                                        <div className='time_newscardright '>
+                                                            <p>{data.publishedAt}</p>
+                                                            <div className='gap_aftertime'></div>
+                                                            <p>@{data.author}</p>
+                                                        </div>
+                                                    </div>
+                                                })}
                                             </div>
+
                                         </div>
-                                    </div>  
 
 
-                                        // <div className='news_cardright '>
-                                        //     <div key={i} className='container_newscardright'>
-                                        //         <div className='heading_newscardright '>
-                                        //             <div className='profile_newscardright'></div>
-                                        //             <div>{data.title}</div>
-                                        //         </div>
-                                        //         <p className=' mb-1 font-bold para_newscardright'>{relatedArticle.paragraph}</p>
-                                        //         <div className='time_newscardright '>
-                                        //             <p>{data.pubDate}</p>
-                                        //             <div className='gap_aftertime'></div>
-                                        //             <p>@{data.source_id}</p>
-                                        //         </div>
-                                        //     </div>
-                                        // </div> 
-                                      
-                                 )})} 
+                                    )
+                                })}
 
                             </div>
-                            
+
 
 
                         </div >
@@ -264,9 +270,9 @@ const Lens = () => {
                     <h3 className='h3'>For you</h3>
                     <p className='para'>Recommendation based on your activity ? </p>
                     <div className='container_foryoupage'>
-                        {datas.slice(20,26).map((data, index) => (
+                        {datas.slice(20, 26).map((data, index) => (
 
-                            <div key={index}  className='card_foryoupage'>
+                            <div key={index} className='card_foryoupage'>
                                 <div className='left_foryoupage'>
                                     <div className='heading'>
                                         <div className='profile_foryoupage'></div>
@@ -324,7 +330,7 @@ const Lens = () => {
                     </div>
                 </div>
                 <div>
-                    
+
                 </div>
 
 
