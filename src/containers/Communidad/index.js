@@ -167,14 +167,14 @@ const Communidad = () => {
                     <div className='news_middle'>
                         <div className='button_container'>
                             <ul className='unorder-container'>
-                                {/* <Link to="/feed"> */}
+                                {/* <Link to="/communidad/feed"> */}
                                     <li><button className={page == "Feed" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Feed")} >Feed</button></li>
                                 {/* </Link>
-                                <Link to= "/community" > */}
+                                <Link to= "/communidad/community" > */}
                                     <li><button className={page == "Communities" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Communities")}>Communities</button>
                                     </li>
                                 {/* </Link>
-                                <Link to="/events"  > */}
+                                <Link to="/communidad/events"  > */}
                                     <li><button className={page == "Event" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Events")}>Events </button>
                                     </li>
                                 {/* </Link> */}

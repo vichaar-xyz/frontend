@@ -27,36 +27,9 @@ const routes = [
         path: "/contraverse",
         element: <Contraverse />,
     },
-    // {
-    //     path: "/communidad/",
-    //     element:<Communidad/>,
-    //     children: [
-    //         { index: true, },
-    //         { path: "/feed", element: <Feed /> },
-    //         { path: "/event", element: <Events /> },
-    //         { path: "/communities", element: <Communities /> }
-    //     ]
-    //     // element: <Communidad />,
-    // },
     {
-        path: "/communidad/",
-        element: <Communidad />,
-    },
-    {
-        path: "/communidad/:category",
-        element: <Communidad />,
-    },
-    {
-        path: "/events",
-        element: <Events/>,
-    },
-    {
-        path: "/feed",
-        element: <Feed/>,
-    },
-    {
-        path: "/community",
-        element: <Communities/>,
+        path: "/communidad",
+        element:<Communidad/>,
     },
     {
         path: "/lens",
