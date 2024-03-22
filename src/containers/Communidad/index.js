@@ -10,7 +10,7 @@ import Communities from './Communities';
 const Communidad = () => {
     const {catagory} = useParams();
     const navigate = useNavigate();
-    const [page, selectpage] = useState("Feed");
+    const [page, selectpage] = useState("Communities");
     console.log(page);
 
     const stats = [
