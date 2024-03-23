@@ -97,8 +97,8 @@ const Odyssey = () => {
     const menuItems = [
         { label: "Odyssey", active: true, route: "/odyssey" },
         { label: "Controverse", active: false, route: "/contraverse" },
-        { label: "Lens", active: false, route: "/communidad" },
-        { label: "Communidad", active: false, route: "/lens" },
+        { label: "Lens", active: false, route: "/lens" },
+        { label: "Communidad", active: false, route: "/communidad" },
     ];
 
     const MenuItem = ({ label, active, route }) => (
