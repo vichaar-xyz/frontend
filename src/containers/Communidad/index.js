@@ -10,7 +10,7 @@ import Communities from './Communities';
 const Communidad = () => {
     const {catagory} = useParams();
     const navigate = useNavigate();
-    const [page, selectpage] = useState("Communities");
+    const [page, selectpage] = useState("Feed");
     console.log(page);
 
     const stats = [
@@ -164,7 +164,7 @@ const Communidad = () => {
 
                 {/* Middle  */}
 
-                    <div className='news_middle'>
+                    <div className='communidad_middle'>
                         <div className='button_container'>
                             <ul className='unorder-container'>
                                 {/* <Link to="/communidad/feed"> */}
@@ -175,7 +175,7 @@ const Communidad = () => {
                                     </li>
                                 {/* </Link>
                                 <Link to="/communidad/events"  > */}
-                                    <li><button className={page == "Event" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Events")}>Events </button>
+                                    <li><button className={page == "Events" ? ' switch-trueButton' : 'switch-falseButton'} onClick={() => selectpage("Events")}>Events </button>
                                     </li>
                                 {/* </Link> */}
                             </ul>
@@ -200,6 +200,12 @@ const Communidad = () => {
                 <div className="contraverse_right">
                     <div className="right_main_container">
                     <div className="right_container">
+
+                        <div className='location_search'>
+                            <input type='text' placeholder="Location" className='search_box'/>
+                            {/* <img src="https://img.icons8.com/?size=256&id=3723&format=png" alt='' className='location_icon'/> */}
+                             
+                        </div>
                         <div className="tab_card">
                         <div className="explore-menu">
                             <h2 className="explore-heading">Explore</h2>
