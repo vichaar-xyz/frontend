@@ -20,15 +20,16 @@ const Feed = () => {
 
   return (
     <div>
-        <div>
+        <div className='feed'>
 
 {/*EventPost*/}
 <div className='event_content'>
     <article className='event_card'>
         <header className='event_header'>
             <div className='user_info'>
+                
                 <img src="https://github.com/vichaar-xyz/frontend/assets/87490161/31983fed-731f-4cc0-9eaf-4fd84cf7f97b" alt="User avatar not found"
-                    className="user_avatar" />
+                    className="user_avatar" loading="lazy" />
                 <div className='username'>@maheshwari_009</div>
             </div>
             <div className="follow-button" >Follow</div>
@@ -48,6 +49,7 @@ const Feed = () => {
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
                         alt="Like icon"
                         className="like_icon"
+                        loading="lazy"
                     />
                     <div className="like_number">1.2k</div>
 
