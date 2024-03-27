@@ -78,3 +78,57 @@ a {
   }
   // }
 }
+
+.custom_modal {
+  .ant-modal-content {
+    background: $secondary-bg;
+    .ant-modal-close-x {
+      svg {
+        fill: white;
+      }
+    }
+    .ant-modal-header {
+    }
+    .ant-modal-body {
+      .post_main_container {
+        .title_container {
+          input {
+            background: $gradient-background;
+            color: white;
+            border: none;
+          }
+        }
+        .fr-toolbar {
+          background: $gradient-background !important;
+          color: white;
+          border: none;
+          padding: 10px;
+          .fr-btn-grp {
+            margin: 0 17px 10px 12px;
+          }
+        }
+        .fr-wrapper {
+          background: $gradient-background !important;
+          color: white;
+          border: none;
+        }
+        .fr-second-toolbar {
+          background: $gradient-background !important;
+          color: white;
+          border: none;
+        }
+        .fr-btn-grp {
+          button {
+            background: #ebebeb;
+          }
+        }
+        .tags_container {
+          .tag-selection {
+            border: none;
+            background: $gradient-background;
+          }
+        }
+      }
+    }
+  }
+}
