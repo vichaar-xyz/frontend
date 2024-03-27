@@ -5,6 +5,12 @@ $black: #000;
 
 // Backgrounds
 $primary-bg: #06141d;
+$secondary-bg: #1a2730;
+$gradient-background: linear-gradient(
+  90deg,
+  rgba(217, 217, 217, 0.08) 0%,
+  rgba(115, 115, 115, 0.08) 100%
+);
 
 // Colors
 $heading-color: #333b69;

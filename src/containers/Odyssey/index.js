@@ -13,6 +13,9 @@ import 'froala-editor/js/plugins/image.min.js'
 import 'froala-editor/js/plugins/char_counter.min.js'
 import axios from 'axios';
 import { PINATA_API_KEY, YOUR_PINATA_SECRET_API_KEY } from '../../constants/common';
+import Transaction from './transaction';
+import { Orbis } from "@orbisclub/orbis-sdk";
+const orbis = new Orbis({});
 
 const Odyssey = () => {
     const navigate = useNavigate();
@@ -22,6 +25,8 @@ const Odyssey = () => {
     const [postTitel, setPostTitle] = useState("");
     const [postPara, setPostPara] = useState("")
     const [postParaImg, setPostParaImg] = useState("")
+    const [userDidId, setuserDidId] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -203,12 +208,27 @@ const Odyssey = () => {
     };
 
     const handleSubmit = async () => {
+        setLoading(true)
         try {
             const userTitle = postTitel;
             const userParagraph = postPara;
             const userTags = selectedTags;
             const userBlobUrls = postParaImg;
             const ipfsImageLinks = [];
+
+
+            // Coneect To orbis 
+
+            if (!userDidId) {
+                const res = await orbis.connect_v2({
+                    provider: window.phantom?.solana,
+                    chain: "solana",
+                    lit: true
+                });
+
+                setuserDidId(res.did)
+            }
+
 
             // Upload each image to IPFS and store the links
             for (const imageUrl of userBlobUrls) {
@@ -234,18 +254,38 @@ const Odyssey = () => {
                 ipfsImageLinks.push(fileDataUrls); // Pushing the IPFS link to the array
             }
 
+
+            // Upload content on orbis 
+
+
+
+            const content = {
+                body: userTitle || "This is a post p1",
+                data: {
+                    title: userTitle,
+                    paragraph: userParagraph,
+                    tags: userTags,
+                    images: ipfsImageLinks,
+                    wallet_address: "user address",
+                    timestamp: "date - time",
+                    user_name: "Abdul 123",// For now using hardcode data
+                    postType: "Long",
+                    quoteUrl: ""
+                },
+            }
+
+            const streamId = await orbis.createPost(content);
+
+
             // Created JSON object with IPFS links
             const postData = {
+                streamId: streamId?.doc || "Error while creating Stream ID",
                 title: userTitle,
                 paragraph: userParagraph,
                 tags: userTags,
                 images: ipfsImageLinks,
                 wallet_address: "user address",
                 timestamp: "date - time",
-                rating: {
-                    like: 23,
-                    disLike: 5675,
-                }, // For now using hardcode data
                 user_name: "Abdul 123",// For now using hardcode data
                 postType: "Long",
                 quoteUrl: ""
@@ -270,10 +310,46 @@ const Odyssey = () => {
 
             const jsonUrl = "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash;
             console.log("JSON file uploaded to IPFS:", jsonUrl);
+
+
+            // Get Post 
+
+            // const { data, error } = await orbis.getPost(streamId?.doc);
+
+            // console.log(data, "Orbis Data");
+
         } catch (error) {
             console.error("Error uploading to IPFS:", error);
         }
+        setLoading(false)
     }
+
+    const handleLike = async () => {
+        // Coneect To orbis 
+
+        if (!userDidId) {
+            const res = await orbis.connect_v2({
+                provider: window.phantom?.solana,
+                chain: "solana",
+                lit: true
+            });
+
+            setuserDidId(res.did)
+        }
+
+        let streamId = "kjzl6cwe1jw148nchoptrajjzk5ekql62lz5v80oct1gqjaf4ovbeklfkcyvmzh"
+
+        // Like , downvotes , haha
+        const res = await orbis.react(streamId, "like");
+
+        console.log(res, "Like ");
+
+        const { data, error } = await orbis.getPost(streamId);
+
+        console.log(data, "Post Data");
+
+    }
+
 
     return (
         <div>
@@ -353,6 +429,8 @@ const Odyssey = () => {
 
                     {/* Middle  */}
                     <div className="odyssey_middle">
+
+                        {/* <Transaction /> */}
                         <div className="post_main_container">
                             <div className="post_container">
                                 <section className="whats-happening-card">
@@ -367,7 +445,19 @@ const Odyssey = () => {
 
                                     </div>
                                     <div className="right">
-                                        <button onClick={handleSubmit}>Post</button>
+                                        {/* <button onClick={handleSubmit} disabled={loading}>Post</button> */}
+                                        <Button
+                                            onClick={handleSubmit}
+                                            loading={loading}
+                                            disabled={
+                                                loading ||
+                                                !postTitel ||
+                                                !postPara
+                                            }
+                                            style={{ height: "auto" }}
+                                        >
+                                            Post
+                                        </Button>
                                     </div>
                                 </section>
                             </div>
@@ -377,8 +467,9 @@ const Odyssey = () => {
                         <div className="content_card_main_container">
                             <div className="content_card">
 
-                                <Link to='/odyssey/1'>
-                                    <article className="post-card">
+                                {/* <Link to='/odyssey/1'> */}
+                                <article className="post-card">
+                                    <Link to='/odyssey/1'>
                                         <header className="post-header">
                                             <div className="user-info">
                                                 <img
@@ -405,32 +496,35 @@ const Odyssey = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <footer className="post-footer">
-                                            <div className="token-list">
-                                                <div className="token-label">Tokens</div>
-                                                <div className="token-count">+ {tokens.length} more</div>
-                                            </div>
-                                            <div className="like-count">
-                                                <img
-                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
-                                                    alt="Like icon"
-                                                    className="like-icon"
-                                                />
-                                                <div className="like-number">1.2k</div>
-                                                <img
-                                                    key={users[1].id}
-                                                    src={users[1].avatar}
-                                                    alt="User avatar"
-                                                    className="user-avatar-small"
-                                                />
-                                                <img
-                                                    key={users[2].id}
-                                                    src={users[2].avatar}
-                                                    alt="User avatar"
-                                                    className="user-avatar-small"
-                                                />
-                                            </div>
-                                            {/* <div className="user-list">
+                                    </Link>
+                                    <footer className="post-footer">
+                                        <div className="token-list">
+                                            <div className="token-label">Tokens</div>
+                                            <div className="token-count">+ {tokens.length} more</div>
+                                        </div>
+                                        <div className="like-count">
+                                            <img
+                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8b24d5d1d31eb51814dc300a6c28bfea52380ec86f8a5bcce23a3a203403b466?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&"
+                                                alt="Like icon"
+                                                className="like-icon"
+                                                onClick={() => handleLike()}
+                                                style={{ cursor: "pointer" }}
+                                            />
+                                            <div className="like-number" >1.2k</div>
+                                            <img
+                                                key={users[1].id}
+                                                src={users[1].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                            <img
+                                                key={users[2].id}
+                                                src={users[2].avatar}
+                                                alt="User avatar"
+                                                className="user-avatar-small"
+                                            />
+                                        </div>
+                                        {/* <div className="user-list">
                                             {users.map((user) => (
                                                 <img
                                                     key={user.id}
@@ -440,9 +534,9 @@ const Odyssey = () => {
                                                 />
                                             ))}
                                         </div> */}
-                                        </footer>
-                                    </article>
-                                </Link>
+                                    </footer>
+                                </article>
+                                {/* </Link> */}
 
                                 <article className="post-card">
                                     <header className="post-header">
@@ -616,13 +710,14 @@ const Odyssey = () => {
 
                     {/* Post Modal  */}
 
-                    <Modal title="Create a Post"
+                    <Modal title={false}
                         open={isModalOpen}
                         onOk={handleOk}
                         onCancel={handleCancel}
                         centered={true}
                         footer={false}
                         width={700}
+                        className='custom_modal'
                     >
                         <div className="post_main_container">
                             <div className="post_container">
