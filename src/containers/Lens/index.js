@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './index.scss';
 import NewsData from '../../assets/Data.json';
 import axios from "axios"
 
 const Lens = () => {
     const [datas, setData] = useState([]);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [page_count, selectpage_count] = useState(1);
     console.log(datas);
-    const getData = async () => {
+    const getData = async (page_count) => {
         setLoading(true)
         axios
             .get(
-                "https://newsapi.org/v2/everything?q=Crypto&from=2024-03-19&sortBy=popularity&apiKey=5bd5d46ce67f4acfa852723c81cc6d65"
+                `https://newsapi.org/v2/everything?q=crypto&from=2024-03-20&sortBy=popularity&pageSize=20&page=${page_count}&apiKey=5bd5d46ce67f4acfa852723c81cc6d65`
             )
             .then((response) => {
                 console.log(response.data.articles);
-                setData(response.data.articles);
+                // const filter_data = response.data.articles((item)=> item.author!==null );
+                // console.log(filter_data);
+                setData((prev)=>[...prev, ...response.data.articles]);
                 setLoading(false)
             })
             .catch((error) => {
@@ -26,8 +29,29 @@ const Lens = () => {
     };
 
     useEffect(() => {
-        getData();
-    }, [])
+        getData(page_count);
+    }, [page_count])
+
+    const handelInfinitscroll = async() => {
+        
+        try{
+
+            if(document.documentElement.scrollHeight <= window.innerHeight+document.documentElement.scrollTop + 300){
+                selectpage_count((prev)=> prev + 1  );
+                console.log(selectpage_count);
+            }   
+        }
+        catch(error){
+            console.log(error);
+            
+        }
+    }
+
+
+    useEffect( ()=>{
+        window.addEventListener("scroll",handelInfinitscroll);
+
+    },[])
 
 
     const navigate = useNavigate();
@@ -193,8 +217,56 @@ const Lens = () => {
                             </ul>
                         </div>
 
-                        {loading ? <h2 style={{ textAlign: "center", margin: "auto" }}>Loading ...</h2> :
-                            <div className='news_mainBody'>
+                        {loading ?
+                            // Loading animation
+                            <div>
+
+                                <div class="loader">
+                                    <div className="wrapper_left ">
+                                        <div className="square bg_loader"></div>
+                                        <div className="loader_profile">
+                                            <div className='line-1 bg_loader'></div>
+                                            <div className="line-2 bg_loader"></div>
+                                        </div>
+
+                                        <div className="line-3 bg_loader"></div>
+                                        <div className="line-4 bg_loader"></div>
+                                        <div className="line-5 bg_loader"></div>
+                                        <div className="line-6 bg_loader"></div>
+                                    </div>
+                                    <div className='wrapper_right'>
+                                        <div className="loader_profile">
+                                            <div className='line-1 bg_loader'></div>
+                                            <div className="line-2 bg_loader"></div>
+                                        </div>
+
+                                        <div className="line-3 bg_loader"></div>
+                                        <div className="line-4 bg_loader"></div>
+                                        <div className="line-5 bg_loader"></div>
+                                        <div className="loader_profile">
+                                            <div className='line-1 bg_loader'></div>
+                                            <div className="line-2 bg_loader"></div>
+                                        </div>
+
+                                        <div className="line-3 bg_loader"></div>
+                                        <div className="line-4 bg_loader"></div>
+                                        <div className="line-5 bg_loader"></div>
+                                        <div className="loader_profile">
+                                            <div className='line-1 bg_loader'></div>
+                                            <div className="line-2 bg_loader"></div>
+                                        </div>
+
+                                        <div className="line-3 bg_loader"></div>
+                                        <div className="line-4 bg_loader"></div>
+                                        <div className="line-5 bg_loader"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            : <div className='news_mainBody'>
                                 <div className=' '>
                                     {datas.slice(2, 4).map((data, i) => {
                                         return (
@@ -203,33 +275,37 @@ const Lens = () => {
                                                 <div className='news_cardleft'>
                                                     <img src={data.urlToImage} alt="Image not found" className='img_newscardleft' />
 
-                                                    <div className='heading_newscardleft '>
-                                                        <div className='profile_newscardleft  '></div>
-                                                        <h3 className=''>{(data.title).substring(0, 50)}</h3>
-                                                    </div>
-                                                    <p className='mb-3 font-bold'>{(data.description).substring(0, 80)}</p>
-                                                    <div className='time_newscardleft '>
-                                                        <p>{data.publishedAt}</p>
-                                                        <div className='gap_aftertime  '></div>
-                                                        <p>@{(data.author).substring(0, 10)}</p>
-                                                    </div>
+                                                    <Link to={data.url}>
+                                                        <div className='heading_newscardleft '>
+                                                            <div className='profile_newscardleft  '></div>
+                                                            <h3 className='title'>{(data.title).substring(0, 50)}</h3>
+                                                        </div>
+                                                        <p className='mb-3 font-bold'>{(data.description).substring(0, 110)}</p>
+                                                        <div className='time_newscardleft '>
+                                                            <p>{new Date(data.publishedAt).getUTCHours()} hour ago</p>
+                                                            <div className='gap_aftertime  '></div>
+                                                            <p>@{(data.author).substring(0, 10)}</p>
+                                                        </div>
+                                                    </Link>
                                                 </div>
 
 
 
                                                 <div className='news_cardright '>
-                                                    {datas.slice((i + 4), (i + 6)).map((data, i) => {
+                                                    {datas.slice((i * 3 + 4), (i * 3 + 7)).map((data, i) => {
                                                         return <div key={i} className='container_newscardright'>
-                                                            <div className='heading_newscardright '>
-                                                                <div className='profile_newscardright'></div>
-                                                                <div className='title'>{data.title}</div>
-                                                            </div>
-                                                            <p className=' mb-1 font-bold para_newscardright'>{(data.description).substring(0, 200)}</p>
-                                                            <div className='time_newscardright '>
-                                                                <p>{data.publishedAt}</p>
-                                                                <div className='gap_aftertime'></div>
-                                                                <p>@{(data.author).substring(0, 10)}</p>
-                                                            </div>
+                                                            <Link to={data.url}>
+                                                                <div className='heading_newscardright '>
+                                                                    <div className='profile_newscardright'></div>
+                                                                    <div className='title'>{(data.title).substring(0, 20)}</div>
+                                                                </div>
+                                                                <p className=' mb-1 font-bold para_newscardright'>{(data.description).substring(0, 90) + "..."}</p>
+                                                                <div className='time_newscardright '>
+                                                                    <p>{new Date(data.publishedAt).getUTCHours()} hour ago</p>
+                                                                    <div className='gap_aftertime'></div>
+                                                                    <p>@{(data.author).substring(0, 10)}</p>
+                                                                </div>
+                                                            </Link>
                                                         </div>
                                                     })}
                                                 </div>
@@ -282,21 +358,24 @@ const Lens = () => {
                     <h3 className='h3'>For you</h3>
                     <p className='para'>Recommendation based on your activity ? </p>
                     <div className='container_foryoupage'>
-                        {datas.slice(20, 26).map((data, index) => (
+                        {datas.slice(8).map((data, index) => (
 
                             <div key={index} className='card_foryoupage'>
-                                <div className='left_foryoupage'>
-                                    <div className='heading'>
-                                        <div className='profile_foryoupage'></div>
-                                        <h3 className='heading_foryoupage'>{data.title}</h3>
+                                <Link to={data.url}>
+                                    <div className='left_foryoupage'>
+                                        <div className='heading'>
+                                            <div className='profile_foryoupage'></div>
+                                            <h3 className='heading_foryoupage'>{(data.title).substring(0, 35) + "..."}</h3>
+                                        </div>
+                                        <p className='para_foryoupage'>{(data.description).substring(0, 160) + "..."}</p>
+                                        <p className='time'>{new Date(data.publishedAt).getUTCHours()} hours ago</p>
                                     </div>
-                                    <p className='para_foryoupage'>{data.description}</p>
-                                    <p className='time'>{data.publishedAt}</p>
-                                </div>
+                                </Link>
                                 <div className='right_foryoupage'>
                                     <img src={data.urlToImage} alt="Image not found" className='img_rightforyoupage' />
                                 </div>
 
+                                {/* <hr className='horizantal' /> */}
                             </div>
 
                         ))}
@@ -305,10 +384,10 @@ const Lens = () => {
 
 
                 {/* for you cards */}
-                <div className='foryou_cards max_width_container'>
+                {/* <div className='foryou_cards max_width_container'>
                     <h3 className='h3'>For you</h3>
                     <p className='para'>Recommendation based on your activity ? </p>
-                    {/* <div className='container_foryoucards'>
+                    <div className='container_foryoucards'>
                         {Categorys?.map((data, index) => (
 
                             <div key={index} className='card_foryoucards' >
@@ -341,8 +420,8 @@ const Lens = () => {
                             </div>
 
                         ))}
-                    </div> */}
-                </div>
+                    </div>
+                </div> */}
                 <div>
 
                 </div>

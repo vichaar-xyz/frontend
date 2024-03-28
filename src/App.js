@@ -1,7 +1,6 @@
 import { useLocation,Outlet } from "react-router-dom";
 import Header from "./components/header";
 import Router from "./Router";
- <Outlet/>
 function App() {
 
   const location = useLocation();

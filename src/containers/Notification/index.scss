@@ -1,0 +1,236 @@
+.notification {
+    margin: auto;
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(168, 168, 168, 0.4);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    z-index: 999;
+    backdrop-filter:blur(0.2em);
+    padding: 100px 0;
+    height: vh;
+    overflow-y: auto;     
+    .notification_container {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: #1A2730;
+        width: 720px;
+        padding: 50px 70px ;
+
+        .page_title {
+            font-size: 20px;
+            font-weight: 700;
+            font-style: normal;
+            line-height: normal;
+            color: #fff;
+
+        }
+        .notification_nav{
+            position: relative;
+            z-index: 1;
+
+        
+            .notification_slider{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                // gap: 100px;
+                list-style-type: none;
+                margin: 35px 0 0 0;
+                padding: 0;
+                justify-content: space-between;
+
+                .current_slide{
+                    font-size:18px ;
+                font-weight: 400;
+                font-style: normal;
+                color: #fff;
+                line-height: normal;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: auto;
+                    
+
+                    hr{
+                        margin:13px 0 0;
+                        border-radius: 13px;
+                        border: 4px solid rgb(202, 202, 202);
+                        width: 120%;
+
+
+                    }
+                }
+
+
+                
+
+                
+            }
+            .horizontal{
+                width: 100%;
+                border: 0.1em solid #2a363f;
+                margin: 0 ;
+                position: absolute;
+                bottom: 3px;
+                z-index: -1;
+
+            }
+        }
+        .notification_post_container{
+            margin-top: 28px;
+
+        
+            .notification_post{
+                background-color: rgba(255, 255, 255, 0.04);
+                border-radius: 20px;
+                padding: 23px 19px;
+                margin-bottom: 20px;
+                
+
+                .notification_header{
+                    display: flex;
+                    flex-direction: row;
+                    align-items:center;
+                    gap: 10px;
+                    .username_notifiaction{
+                        color: #fff;
+                        font-size: 17px;
+                        font-weight: 500;
+                        font-style: normal;
+                        line-height: normal;
+
+                    }
+                    
+                    .user_avatar{
+                        aspect-ratio: 1;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 50%;
+                        width: 35px;
+                    }
+                    .verified-badge{
+                        aspect-ratio: 1;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 50%;
+                        width: 17px;
+
+                    }.title_notifiaction{
+                        color: #c0c0c0;
+                        font-size: 16px;
+                        font-weight: 400;
+                        font-style: normal;
+                        line-height: normal;
+                        
+                    }
+
+
+
+
+                }
+                .notification_footer{
+                    display:flex;
+                    flex-direction:row;
+                    align-items: baseline;
+                    gap: 8px;
+                    padding: 3px 45px;
+                    margin-top: 7px;
+
+                    .date_notification{
+                        color: #788996;
+                        font-size: 13px;
+                        font-weight: 400;
+                        font-style: normal;
+                        line-height:normal;
+
+                    }
+                    .dot_between{
+                        width:5px;
+                        height:5px;
+                        background-color: #788996;
+                        border-radius: 50%;
+                    }
+                    .time_notification{
+                        color: #788996;
+                        font-size: 13px;
+                        font-weight: 400;
+                        font-style: normal;
+                        line-height:normal;
+
+                    }
+                    .see_notiification{
+                        padding: 0 28px;
+                        font-size: 13px;
+                        font-weight: 400;
+                        font-style: normal;
+                        line-height: normal;
+                        text-decoration: underline;
+                        text-underline-offset: 2px;
+                        text-decoration-thickness: 0.01em;
+                        color: #c0c0c0;
+                        
+
+                    }
+
+                }
+            }
+
+            .post_like_notification{
+                background-color: rgba(255, 255, 255, 0.04);
+                border-radius: 20px;
+                padding: 23px 19px;
+                margin-bottom: 20px;
+                .user_avatar_list{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 8px;
+
+
+                    
+                    .user_avatar{aspect-ratio: 1;
+                        width: 55px;
+                        object-fit: cover;
+                        object-position: center;
+                        border-radius: 50%;
+
+                    }
+
+
+                }
+                .like_post_footer{
+                    padding: 15px 0 0 10px;
+                    font-size: 13px;
+                    font-weight: 400;
+                    font-style: normal;
+                    line-height: normal;
+                    color: #c0c0c0;
+
+
+                }
+            }
+        }
+    }
+}
+.notification>div{
+    // background-color: white;
+    // padding: 20px;
+    // border-radius: 5px;
+}
+@media (max-width:991px){
+    .notification{
+        display: block;
+
+    }
+}
