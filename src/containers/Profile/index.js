@@ -3,8 +3,19 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import './index.scss'
 import { Select, Tag } from 'antd';
+import { useState } from 'react';
 
-const Profile = () => {
+const Profile = ({ handleWalletConnect, address }) => {
+
+    const [userName, setUserName] = useState();
+    const [email, setEmail] = useState();
+    const [intrestArea, setIntrestArea] = useState([]);
+    // const [address, setAddress] = useState("")
+
+    console.log(userName, "userName");
+    console.log(email, "email");
+    console.log(intrestArea, "intrestArea");
+
 
     const images = [
         "https://cdn.builder.io/api/v1/image/assets/TEMP/269449117348c141aa9972cf6812d108cc08a1e5a2fe1e43e495ffaf40a117ef?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&",
@@ -50,6 +61,11 @@ const Profile = () => {
         );
     };
 
+    const handleSelectchange = (e) => {
+        console.log(e, "handleSelectchange");
+        setIntrestArea(e)
+    }
+
     return (
         <div>
 
@@ -94,14 +110,14 @@ const Profile = () => {
                                 <div className="input_row">
                                     <div className="name">Select username <span>*</span> </div>
                                     <div className="input">
-                                        <input type="text" />
+                                        <input type="text" onChange={(e) => setUserName(e.target.value)} />
                                     </div>
                                 </div>
 
                                 <div className="input_row">
                                     <div className="name">Enter Email id <span>*</span> </div>
                                     <div className="input">
-                                        <input type="text" />
+                                        <input type="text" onChange={(e) => setEmail(e.target.value)} />
                                     </div>
                                 </div>
 
@@ -117,6 +133,7 @@ const Profile = () => {
                                                 width: '70%',
                                             }}
                                             options={options}
+                                            onChange={handleSelectchange}
                                         />
                                     </div>
                                 </div>
@@ -126,9 +143,9 @@ const Profile = () => {
                         <div className="bottom">
 
                             <div className="connect-section">
-                                <div className="connect-title">Connect</div>
+                                <div className="connect-title">{address ? "Address : " : "Connect"}</div>
                                 <div className="profile-images">
-                                    {images.map((image, index) => (
+                                    {/* {images.map((image, index) => (
                                         <img
                                             key={index}
                                             loading="lazy"
@@ -136,7 +153,9 @@ const Profile = () => {
                                             alt="Profile"
                                             className="profile-image"
                                         />
-                                    ))}
+                                    ))} */}
+                                    {address ? address : <button onClick={handleWalletConnect}><span>Connect Wallet</span>  </button>}
+
                                 </div>
                             </div>
 

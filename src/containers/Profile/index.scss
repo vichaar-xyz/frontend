@@ -2,12 +2,12 @@
 
 .profile_page_main_container {
   .profile_page_container {
-    padding: 20px 10px;
+    // padding: 20px 10px;
     .form_container {
       border: 2px solid white;
       border-radius: 25px;
       color: white;
-      width: 60%;
+      // width: 60%;
       margin: auto;
       padding: 20px 10px;
       .top {
@@ -186,6 +186,29 @@
             }
           }
         }
+      }
+    }
+  }
+  .button_container {
+    button {
+      background-color: $primary-color;
+      outline: none;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      color: #fff;
+      text-align: center;
+      //   font-family: "Mplus 1p Bold";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      img {
+        height: 100%;
+        width: 50%;
       }
     }
   }
