@@ -1,8 +1,10 @@
 import * as React from "react";
 import './index.scss';
-import { Input, Space, Select } from 'antd';
+import { Input, Space, Select, Button } from 'antd';
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { Modal } from 'antd';
+import Profile from "../../containers/Profile";
 function SearchBar() {
     return (
         <div className="search-bar">
@@ -35,9 +37,47 @@ function ProfileLink() {
 function Header() {
 
     const { Search } = Input;
+    const [address, setAddress] = useState("")
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    console.log(address, "address");
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     const onSearch = (value, _e, info) => console.log(info?.source, value);
 
+
+    const handleWalletConnect = () => {
+        // Check if Phantom Wallet is installed
+        if (window.solana && window.solana.isPhantom) {
+            const solana = window.solana;
+
+            // Connect to Phantom Wallet provider
+            solana.connect()
+                .then(() => {
+                    console.log('Connected to Phantom Wallet');
+
+                    // Get the wallet address
+                    const walletAddress = solana.publicKey.toString();
+                    console.log('Wallet Address:', walletAddress);
+                    setAddress(walletAddress)
+                })
+                .catch((error) => {
+                    console.error('Failed to connect to Phantom Wallet', error);
+                });
+        } else {
+            console.error('Phantom Wallet is not installed');
+        }
+
+    }
 
     return (
         <>
@@ -77,7 +117,31 @@ function Header() {
                                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/549f3bfc75c551cc8a6d0c18cb0e7f2eab99ab9662c3c1237649cce9205843fc?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Header icon" className="header-icon" />
                                 <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c250e1b77ad2c84c9e8d284d240fee90654a8eff0f728108536a807c0de25ef?apiKey=7ba4ed5c97414425b9fc582a5867d5b9&" alt="Header icon" className="header-icon" />
                             </div>
-                            <ProfileLink />
+
+
+                            {/* {!isModalOpen ? */}
+                            <div>
+                                {/* <Button type="primary" onClick={showModal}>
+                                    Open Modal
+                                </Button> */}
+                                <div className="button_container">
+                                    {/* <button onClick={handleWalletConnect}><span>Connect Wallet</span>  </button> */}
+                                    <button onClick={showModal}><span>Create Profile</span>  </button>
+                                </div>
+                                <Modal title={false}
+                                    open={isModalOpen}
+                                    onOk={handleOk}
+                                    onCancel={handleCancel}
+                                    centered={true}
+                                    width={600}
+                                    footer={false}
+                                    className="custom_modal"
+                                >
+                                    <Profile handleWalletConnect={handleWalletConnect} address={address}/>
+                                </Modal>
+                            </div>
+                            {/* // : <ProfileLink />} */}
+
                         </div>
 
                     </div>
