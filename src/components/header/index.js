@@ -61,7 +61,7 @@ function Header() {
     function handleNotificationClick() {
         setShowNotification(!showNotification);
         
-        console.log(!showNotification);
+        
         if (!showNotification) {
             document.body.style.overflow = 'hidden'; 
         } 

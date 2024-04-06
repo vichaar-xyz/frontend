@@ -49,6 +49,7 @@ const HomePage = () => {
 
                 <div className="feature-title">{title}</div>
                 <div className="feature-description">{description}</div>
+                
             </div>
         </div>
         // </div>

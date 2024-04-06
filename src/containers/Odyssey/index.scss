@@ -303,6 +303,7 @@
             align-items: center;
             gap: 20px;
             padding: 13px 26px;
+            
             .left {
               display: flex;
               gap: 15px;
@@ -1028,16 +1029,34 @@
 
 .tag-selection li {
   margin-bottom: 5px;
+  background-image: linear-gradient(
+    to right,
+    #f41e1e 0%,
+    #e0972f 10%,
+    #b3d52e 20%,
+    #35c89c 30%,
+    #4074b2 40%,
+    #0074fc 50%,
+    #6b05fa 60%,
+    #ff09d8 70%,
+    #c02fa9 80%,
+    #fe5f05 90%
+  );
+  padding: 3px 1px;
+  border-radius:18px;
+  
+
   label {
-    border: 1px solid #8080808a;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
     padding: 5px 10px;
-    background: linear-gradient(
-      180deg,
-      rgba(37, 44, 48, 0.31) 0%,
-      rgba(255, 255, 255, 0.11) 100%
-    );
+    background-color:$primary-bg; 
     border-radius: 18px;
+    color:#ffffff;
+    text-align:center;
   }
+
 }
 
 .tag-selection input[type="checkbox"] {
